@@ -262,8 +262,6 @@ Expected extra processes:
 
 ```
 HMaster
-HRegionServer
-HQuorumPeer
 ```
 
 ### 4d. Smoke test the shell

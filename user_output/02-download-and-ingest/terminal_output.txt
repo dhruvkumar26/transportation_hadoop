@@ -1,0 +1,63 @@
+hdoop@dhruv:~/bigdata-assignment/user_output/02-download-and-ingest$ hdfs dfs -ls -R /raw
+2026-09-28 18:41:23,475 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+drwxr-xr-x   - hdoop supergroup          0 2026-09-28 18:27 /raw/trips
+drwxr-xr-x   - hdoop supergroup          0 2026-09-28 18:27 /raw/trips/year=2024
+drwxr-xr-x   - hdoop supergroup          0 2026-09-28 18:27 /raw/trips/year=2024/month=01
+-rw-r--r--   1 hdoop supergroup  321371471 2026-09-28 18:27 /raw/trips/year=2024/month=01/yellow_tripdata_2024-01.csv
+drwxr-xr-x   - hdoop supergroup          0 2026-09-28 18:27 /raw/trips/year=2024/month=02
+-rw-r--r--   1 hdoop supergroup  325566742 2026-09-28 18:27 /raw/trips/year=2024/month=02/yellow_tripdata_2024-02.csv
+drwxr-xr-x   - hdoop supergroup          0 2026-09-28 18:28 /raw/trips/year=2024/month=03
+-rw-r--r--   1 hdoop supergroup  385784140 2026-09-28 18:28 /raw/trips/year=2024/month=03/yellow_tripdata_2024-03.csv
+drwxr-xr-x   - hdoop supergroup          0 2026-09-28 18:27 /raw/zone_lookup
+-rw-r--r--   1 hdoop supergroup      12331 2026-09-28 18:27 /raw/zone_lookup/taxi_zone_lookup.csv
+hdoop@dhruv:~/bigdata-assignment/user_output/02-download-and-ingest$ hdfs dfs -du -h /raw
+2026-09-28 18:41:46,173 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+984.9 M  984.9 M  /raw/trips
+12.0 K   12.0 K   /raw/zone_lookup
+hdoop@dhruv:~/bigdata-assignment/user_output/02-download-and-ingest$ hdfs dfs -ls -R /raw/trips/year=2024
+2026-09-28 18:42:17,001 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+drwxr-xr-x   - hdoop supergroup          0 2026-09-28 18:27 /raw/trips/year=2024/month=01
+-rw-r--r--   1 hdoop supergroup  321371471 2026-09-28 18:27 /raw/trips/year=2024/month=01/yellow_tripdata_2024-01.csv
+drwxr-xr-x   - hdoop supergroup          0 2026-09-28 18:27 /raw/trips/year=2024/month=02
+-rw-r--r--   1 hdoop supergroup  325566742 2026-09-28 18:27 /raw/trips/year=2024/month=02/yellow_tripdata_2024-02.csv
+drwxr-xr-x   - hdoop supergroup          0 2026-09-28 18:28 /raw/trips/year=2024/month=03
+-rw-r--r--   1 hdoop supergroup  385784140 2026-09-28 18:28 /raw/trips/year=2024/month=03/yellow_tripdata_2024-03.csv
+hdoop@dhruv:~/bigdata-assignment/user_output/02-download-and-ingest$ hdfs dfs -cat /raw/trips/year=2024/month=01/yellow_tripdata_2024-01.csv | head -3
+2026-09-28 18:42:38,900 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2026-09-28 18:42:39,333 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2,2024-01-01 00:57:55.000000,2024-01-01 01:17:43.000000,1,1.72,1,"N",186,79,2,17.7,1,0.5,0,0,1,22.7,2.5,0
+1,2024-01-01 00:03:00.000000,2024-01-01 00:09:36.000000,1,1.8,1,"N",140,236,1,10,3.5,0.5,3.75,0,1,18.75,2.5,0
+1,2024-01-01 00:17:06.000000,2024-01-01 00:35:01.000000,1,4.7,1,"N",236,79,1,23.3,3.5,0.5,3,0,1,31.3,2.5,0
+cat: Unable to write to output stream.
+hdoop@dhruv:~/bigdata-assignment/user_output/02-download-and-ingest$ hdfs fsck /raw -files -blocks | tail -25
+2026-09-28 18:42:49,137 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Connecting to namenode via http://localhost:9870/fsck?ugi=hdoop&files=1&blocks=1&path=%2Fraw
+ Over-replicated blocks:	0 (0.0 %)
+ Under-replicated blocks:	0 (0.0 %)
+ Mis-replicated blocks:		0 (0.0 %)
+ Default replication factor:	1
+ Average block replication:	1.0
+ Missing blocks:		0
+ Corrupt blocks:		0
+ Missing replicas:		0 (0.0 %)
+
+Erasure Coded Block Groups:
+ Total size:	0 B
+ Total files:	0
+ Total block groups (validated):	0
+ Minimally erasure-coded block groups:	0
+ Over-erasure-coded block groups:	0
+ Under-erasure-coded block groups:	0
+ Unsatisfactory placement block groups:	0
+ Average block group size:	0.0
+ Missing block groups:		0
+ Corrupt block groups:		0
+ Missing internal blocks:	0
+FSCK ended at Mon Sep 28 18:42:49 UTC 2026 in 1 milliseconds
+
+
+The filesystem under path '/raw' is HEALTHY
+hdoop@dhruv:~/bigdata-assignment/user_output/02-download-and-ingest$ 
+
+
+# I checked UI also, everything looks fine there.
