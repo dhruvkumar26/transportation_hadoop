@@ -7,7 +7,14 @@
 # =========================================================================
 
 # --- JAVA ---
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+# Auto-detect JDK architecture (amd64 on Intel VMs, arm64 on Apple Silicon / ARM hosts).
+# If dpkg is unavailable, falls back to whichever java-8-openjdk-* dir exists.
+_JDK_ARCH="$(dpkg --print-architecture 2>/dev/null)"
+if [ -z "$_JDK_ARCH" ] || [ ! -d "/usr/lib/jvm/java-8-openjdk-${_JDK_ARCH}" ]; then
+    _JDK_ARCH="$(ls -d /usr/lib/jvm/java-8-openjdk-* 2>/dev/null | head -1 | sed 's|.*java-8-openjdk-||')"
+fi
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-${_JDK_ARCH:-amd64}"
+unset _JDK_ARCH
 
 # --- HADOOP 3.2.1 ---
 export HADOOP_HOME=/home/hdoop/hadoop-3.2.1

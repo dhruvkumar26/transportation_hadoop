@@ -191,15 +191,36 @@ rm hbase-2.4.18-bin.tar.gz
 
 ### 4a. Point HBase's `hbase-env.sh` at Java
 
+**First determine your VM's architecture** (Intel = `amd64`, Apple Silicon / ARM host = `arm64`):
+
+```bash
+dpkg --print-architecture
+# or, equivalently:
+ls -d /usr/lib/jvm/java-8-openjdk-*
+```
+
+Use the value you see (`amd64` or `arm64`) in the next commands.
+
 ```bash
 vi $HBASE_HOME/conf/hbase-env.sh
 ```
 
-Add near the top:
+Add near the top (replace `<ARCH>` with `amd64` or `arm64`):
 
 ```bash
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-<ARCH>
 export HBASE_MANAGES_ZK=true
+
+# HBase 2.4 + Hadoop 3.x compat — skips a broken classpath-lookup step
+# whose sysprop names contain dots that bash rejects.
+export HBASE_DISABLE_HADOOP_CLASSPATH_LOOKUP="true"
+```
+
+**Verify** the java binary actually lives at that path (JDK 8 keeps `java` inside a `jre` subdirectory):
+
+```bash
+ls -la $JAVA_HOME/jre/bin/java     # must exist — this is what HBase invokes
+ls -la $JAVA_HOME/bin/javac        # must exist too
 ```
 
 ### 4b. Configure standalone HBase using HDFS
@@ -319,3 +340,5 @@ Once verified, we move to **`02-download-and-ingest.md`**.
 | HBase `HMaster` not showing in `jps` | Port 16000/16010 already used | Check with `sudo lsof -i :16010`; kill offender |
 | HBase can't connect to HDFS | Hadoop is stopped | `start-dfs.sh && start-yarn.sh` first |
 | `WARN util.NativeCodeLoader` when running anything | Native lib warning | Ignore — cosmetic |
+| `HADOOP_ORG.APACHE.HADOOP.HBASE.UTIL.GETJAVAPROPERTY_USER: invalid variable name` | HBase 2.4 on Hadoop 3.x classpath probe bug | Add `export HBASE_DISABLE_HADOOP_CLASSPATH_LOOKUP="true"` to `hbase-env.sh` |
+| `$JAVA_HOME/bin/java: No such file or directory` when starting HBase | Wrong arch in `JAVA_HOME` (VM is ARM64 but path says amd64, or vice versa) | Check `dpkg --print-architecture`; fix path in `~/.bashrc` **and** `hbase-env.sh`; then `source ~/.bashrc` and retry |
