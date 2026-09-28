@@ -30,7 +30,7 @@ Scripts live at:
 
 ---
 
-## Step 2 — Confirm Pig can talk to HDFS
+## Step 2 — Confirm Pig can talk to HDFS + start Job History Server
 
 ```bash
 pig -x mapreduce -e "ls /raw"
@@ -39,6 +39,13 @@ pig -x mapreduce -e "ls /raw"
 Expected: lists `hdfs://127.0.0.1:9000/raw/trips` and `.../raw/zone_lookup`.
 
 If you get `Could not resolve LzoCodec`, ignore — Pig warns but continues.
+
+**Also start the MR Job History Server** if `jps` doesn't already show it. Pig fetches job counters from this daemon (port 10020) after every job; if it's down, the job still succeeds but the log will fill with `Retrying connect to server: 0.0.0.0/0.0.0.0:10020` and the "Successfully read N records" stat will show `0` (misleading placeholder — the job is fine, just the counter reader failed):
+
+```bash
+jps | grep -q JobHistoryServer || mapred --daemon start historyserver
+jps
+```
 
 ---
 
@@ -174,3 +181,4 @@ Once clean, next up: **`04-run-mapreduce.md`** (native Streaming MR).
 | Zone JOIN produces `Unknown` for many rows | Header row of zone lookup was not filtered — inspect `head -1` of `/raw/zone_lookup/*.csv`; the MATCHES regex in `02_enrich_trips.pig` should skip it |
 | `Container killed by ResourceManager. Exit code 143` | Container memory too small — bump `mapreduce.map.memory.mb` from 512 → 768 in `mapred-site.xml`, then restart YARN |
 | `java.io.IOException: Not a file: ... _counts` | You ran the second Pig script before the first finished writing `_counts` dirs — wait for job to fully complete |
+| `Retrying connect to server: 0.0.0.0/0.0.0.0:10020` (dozens of times) + `Successfully read 0 records` in stats | Job History Server not running. **Job actually succeeded** — check `Successfully stored records (N bytes)` in the Output(s) block; if that's non-zero, the ETL worked. Start the daemon: `mapred --daemon start historyserver` — future jobs will report counters cleanly. |

@@ -250,10 +250,11 @@ If you don't — STOP and paste the error output back to Claude.
 ```bash
 $HADOOP_HOME/sbin/start-dfs.sh
 $HADOOP_HOME/sbin/start-yarn.sh
+mapred --daemon start historyserver     # needed so Pig/Hive can read job counters
 jps
 ```
 
-You should see **all six**:
+You should see **all seven**:
 
 ```
 NameNode
@@ -261,8 +262,11 @@ DataNode
 SecondaryNameNode
 ResourceManager
 NodeManager
+JobHistoryServer
 Jps
 ```
+
+The Job History Server listens on **IPC port 10020** and web UI **19888**. Without it, every Pig / Hive / MR job succeeds but you get 40+ lines of `Retrying connect to server: 0.0.0.0/0.0.0.0:10020` in the log after each run.
 
 Screenshot this — call it `00-jps-healthy.png`.
 

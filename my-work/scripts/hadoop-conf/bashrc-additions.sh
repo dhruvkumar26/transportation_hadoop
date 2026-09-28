@@ -42,7 +42,9 @@ export PATH=$PATH:$HBASE_HOME/bin
 
 # --- Convenience shortcuts ---
 alias jn='jps'
-alias hstart='$HADOOP_HOME/sbin/start-dfs.sh && $HADOOP_HOME/sbin/start-yarn.sh && jps'
-alias hstop='$HADOOP_HOME/sbin/stop-yarn.sh && $HADOOP_HOME/sbin/stop-dfs.sh && jps'
+# hstart also starts the MR Job History Server so Pig/Hive can fetch job
+# counters (otherwise: "Retrying connect to server 0.0.0.0:10020" spam).
+alias hstart='$HADOOP_HOME/sbin/start-dfs.sh && $HADOOP_HOME/sbin/start-yarn.sh && mapred --daemon start historyserver && jps'
+alias hstop='mapred --daemon stop historyserver 2>/dev/null; $HADOOP_HOME/sbin/stop-yarn.sh && $HADOOP_HOME/sbin/stop-dfs.sh && jps'
 alias hls='hdfs dfs -ls'
 alias hcat='hdfs dfs -cat'
