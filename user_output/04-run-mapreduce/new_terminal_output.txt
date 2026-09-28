@@ -1,0 +1,160 @@
+hdoop@dhruv:~/bigdata-assignment/user_output$ hdfs dfs -rm -r -f /results/trips_per_zone_hour
+
+# Re-submit with the composite key
+cd my-work/scripts/mapreduce
+./run.sh 2>&1 | tee ~/mr_run.log
+2026-09-28 20:37:12,461 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Deleted /results/trips_per_zone_hour
+bash: cd: my-work/scripts/mapreduce: No such file or directory
+bash: ./run.sh: No such file or directory
+hdoop@dhruv:~/bigdata-assignment/user_output$ cd ../my-work/scripts/mapreduce
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/mapreduce$ ./run.sh 2>&1 | tee ~/mr_run.log
+bash: ./run.sh: Permission denied
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/mapreduce$ chmod +x ./run.sh 
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/mapreduce$ ./run.sh 2>&1 | tee ~/mr_run.log
+→ Submitting streaming job...
+  jar    : /home/hdoop/hadoop-3.2.1/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar
+  mapper : /home/hdoop/bigdata-assignment/my-work/scripts/mapreduce/mapper.py
+  reducer: /home/hdoop/bigdata-assignment/my-work/scripts/mapreduce/reducer.py
+  input  : /clean/trips
+  output : /results/trips_per_zone_hour
+
+2026-09-28 20:37:38,645 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+packageJobJar: [/tmp/hadoop-unjar5100459924949811566/] [] /tmp/streamjob710911376010037669.jar tmpDir=null
+2026-09-28 20:37:39,054 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-09-28 20:37:39,192 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-09-28 20:37:39,335 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/hdoop/.staging/job_1790615823781_0005
+2026-09-28 20:37:39,396 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2026-09-28 20:37:39,467 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2026-09-28 20:37:39,888 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2026-09-28 20:37:39,966 INFO mapred.FileInputFormat: Total input files to process : 8
+2026-09-28 20:37:39,969 INFO net.NetworkTopology: Adding a new node: /default-rack/127.0.0.1:9866
+2026-09-28 20:37:39,980 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2026-09-28 20:37:40,005 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2026-09-28 20:37:40,011 INFO mapreduce.JobSubmitter: number of splits:8
+2026-09-28 20:37:40,110 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2026-09-28 20:37:40,125 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1790615823781_0005
+2026-09-28 20:37:40,125 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2026-09-28 20:37:40,287 INFO conf.Configuration: resource-types.xml not found
+2026-09-28 20:37:40,287 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2026-09-28 20:37:40,418 INFO impl.YarnClientImpl: Submitted application application_1790615823781_0005
+2026-09-28 20:37:40,500 INFO mapreduce.Job: The url to track the job: http://dhruv:8088/proxy/application_1790615823781_0005/
+2026-09-28 20:37:40,501 INFO mapreduce.Job: Running job: job_1790615823781_0005
+2026-09-28 20:37:44,720 INFO mapreduce.Job: Job job_1790615823781_0005 running in uber mode : false
+2026-09-28 20:37:44,720 INFO mapreduce.Job:  map 0% reduce 0%
+2026-09-28 20:37:52,789 INFO mapreduce.Job:  map 25% reduce 0%
+2026-09-28 20:37:54,800 INFO mapreduce.Job:  map 38% reduce 0%
+2026-09-28 20:37:58,876 INFO mapreduce.Job:  map 50% reduce 0%
+2026-09-28 20:37:59,882 INFO mapreduce.Job:  map 63% reduce 0%
+2026-09-28 20:38:01,892 INFO mapreduce.Job:  map 75% reduce 0%
+2026-09-28 20:38:05,926 INFO mapreduce.Job:  map 88% reduce 0%
+2026-09-28 20:38:07,932 INFO mapreduce.Job:  map 100% reduce 0%
+2026-09-28 20:38:11,945 INFO mapreduce.Job:  map 100% reduce 100%
+2026-09-28 20:38:12,955 INFO mapreduce.Job: Job job_1790615823781_0005 completed successfully
+2026-09-28 20:38:13,305 INFO mapreduce.Job: Counters: 58
+	File System Counters
+		FILE: Number of bytes read=91963341
+		FILE: Number of bytes written=186230718
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=1028900430
+		HDFS: Number of bytes written=53568
+		HDFS: Number of read operations=34
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=4
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters 
+		Killed map tasks=1
+		Launched map tasks=8
+		Launched reduce tasks=2
+		Data-local map tasks=2
+		Rack-local map tasks=6
+		Total time spent by all maps in occupied slots (ms)=88042
+		Total time spent by all reduces in occupied slots (ms)=36278
+		Total time spent by all map tasks (ms)=44021
+		Total time spent by all reduce tasks (ms)=18139
+		Total vcore-milliseconds taken by all map tasks=44021
+		Total vcore-milliseconds taken by all reduce tasks=18139
+		Total megabyte-milliseconds taken by all map tasks=22538752
+		Total megabyte-milliseconds taken by all reduce tasks=9287168
+	Map-Reduce Framework
+		Map input records=8479421
+		Map output records=8479421
+		Map output bytes=75004487
+		Map output materialized bytes=91963425
+		Input split bytes=784
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=5421
+		Reduce shuffle bytes=91963425
+		Reduce input records=8479421
+		Reduce output records=5421
+		Spilled Records=16958842
+		Shuffled Maps =16
+		Failed Shuffles=0
+		Merged Map outputs=16
+		GC time elapsed (ms)=826
+		CPU time spent (ms)=17980
+		Physical memory (bytes) snapshot=3212357632
+		Virtual memory (bytes) snapshot=19976990720
+		Total committed heap usage (bytes)=2505048064
+		Peak Map Physical memory (bytes)=350638080
+		Peak Map Virtual memory (bytes)=1997856768
+		Peak Reduce Physical memory (bytes)=245030912
+		Peak Reduce Virtual memory (bytes)=2004832256
+	Custom
+		Rows BAD=0
+		Rows OK=8479421
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=1028899646
+	File Output Format Counters 
+		Bytes Written=53568
+2026-09-28 20:38:13,305 INFO streaming.StreamJob: Output directory: /results/trips_per_zone_hour
+
+→ First 10 lines of output:
+1	00	1
+1	02	1
+1	04	2
+1	06	11
+1	08	6
+1	11	7
+1	13	15
+1	15	19
+1	17	14
+1	19	11
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/mapreduce$ hdfs dfs -cat /results/trips_per_zone_hour/part-* | wc -l
+2026-09-28 20:38:59,871 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2026-09-28 20:39:00,396 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+5421
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/mapreduce$ hdfs dfs -cat /results/trips_per_zone_hour/part-* | sort -t $'\t' -k3 -nr | head -20
+2026-09-28 20:39:15,583 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2026-09-28 20:39:16,082 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+161	18	38756
+161	17	38345
+161	16	33329
+161	19	32656
+236	15	32322
+237	14	32294
+237	15	32131
+237	17	31215
+132	16	31059
+237	18	30506
+161	15	30364
+237	16	30320
+161	14	29807
+162	18	29122
+237	12	29034
+237	13	28895
+236	17	28834
+236	12	28700
+236	14	28506
+236	16	28058
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/mapreduce$ 
