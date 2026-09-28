@@ -108,7 +108,8 @@ The **6360** count = 265 zones × 24 hours (with some sparse combos missing).
 
 ## Step 4 — Screenshot YARN counters
 
-`http://localhost:8088` → the `TripsPerZonePerHour` app → **Counters**.
+`http://localhost:8088` → the `TripsPerZonePerHour` app 
+`http://localhost:19888/jobhistory`
 
 - Important counters to capture: `Launched map tasks`, `Launched reduce tasks`, `Map input records`, `Reduce output records`, and our custom `Custom.Rows OK` / `Custom.Rows BAD` (from `mapper.py`'s `reporter:counter:` lines).
 
