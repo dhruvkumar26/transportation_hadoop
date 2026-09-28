@@ -40,10 +40,11 @@ clean = LOAD '/clean/trips' USING PigStorage(',') AS (
 );
 
 -- Derive time features + duration in minutes.
---   pickup_dt format is 'yyyy-MM-dd HH:mm:ss'
+--   pickup_dt comes through as 'yyyy-MM-dd HH:mm:ss.SSSSSS' (microseconds).
+--   SimpleDateFormat only handles milliseconds, so we trim to 19 chars first.
 enriched = FOREACH clean {
-    pu_ts  = ToDate(pickup_dt,  'yyyy-MM-dd HH:mm:ss');
-    do_ts  = ToDate(dropoff_dt, 'yyyy-MM-dd HH:mm:ss');
+    pu_ts  = ToDate(SUBSTRING(pickup_dt,  0, 19), 'yyyy-MM-dd HH:mm:ss');
+    do_ts  = ToDate(SUBSTRING(dropoff_dt, 0, 19), 'yyyy-MM-dd HH:mm:ss');
     dur_ms = MilliSecondsBetween(do_ts, pu_ts);
     GENERATE
         vendor_id                                    AS vendor_id,
