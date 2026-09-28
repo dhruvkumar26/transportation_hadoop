@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  mapred-site.xml  –  Assignment 1, Big Data Systems, BITS ZG522
+  For: 4 GB RAM VM – small containers to avoid OOM kills
+  Path in VM: $HADOOP_HOME/etc/hadoop/mapred-site.xml
+-->
+<configuration>
+
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
+
+  <!-- Container memory: 512 MB each with 410 MB JVM heap -->
+  <property>
+    <name>mapreduce.map.memory.mb</name>
+    <value>512</value>
+  </property>
+  <property>
+    <name>mapreduce.reduce.memory.mb</name>
+    <value>512</value>
+  </property>
+  <property>
+    <name>mapreduce.map.java.opts</name>
+    <value>-Xmx410m</value>
+  </property>
+  <property>
+    <name>mapreduce.reduce.java.opts</name>
+    <value>-Xmx410m</value>
+  </property>
+
+  <!-- Application Master container -->
+  <property>
+    <name>yarn.app.mapreduce.am.resource.mb</name>
+    <value>512</value>
+  </property>
+  <property>
+    <name>yarn.app.mapreduce.am.command-opts</name>
+    <value>-Xmx410m</value>
+  </property>
+
+  <!-- Explicit MR classpath for YARN (Hadoop 3.x quirk on Ubuntu) -->
+  <property>
+    <name>mapreduce.application.classpath</name>
+    <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
+  </property>
+
+</configuration>

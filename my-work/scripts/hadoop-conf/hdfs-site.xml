@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  hdfs-site.xml  –  Assignment 1, Big Data Systems, BITS ZG522
+  For: single-node pseudo-cluster on Ubuntu 22.04, 4 GB RAM, user `hdoop`
+  Path in VM: $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+
+  FIXES vs Dr. Venkat's original setup guide:
+   1. First `dfs.data.dir` was wrongly pointing at the NameNode dir. Split into
+      correct `dfs.namenode.name.dir` and `dfs.datanode.data.dir`.
+   2. `dfs.replication` changed from 3 to 1 (single-node cluster).
+   3. Added `dfs.permissions.enabled=false` so Hive/Pig/HBase write freely.
+-->
+<configuration>
+
+  <!-- NameNode metadata (fsimage + edit logs) -->
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>/home/hdoop/dfsdata/namenode</value>
+  </property>
+
+  <!-- DataNode block storage -->
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>/home/hdoop/dfsdata/datanode</value>
+  </property>
+
+  <!-- Single-node cluster: only 1 replica possible -->
+  <property>
+    <name>dfs.replication</name>
+    <value>1</value>
+  </property>
+
+  <!-- Turn off HDFS permission checks (lab-only convenience) -->
+  <property>
+    <name>dfs.permissions.enabled</name>
+    <value>false</value>
+  </property>
+
+</configuration>

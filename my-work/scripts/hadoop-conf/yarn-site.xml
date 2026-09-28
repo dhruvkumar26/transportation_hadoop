@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  yarn-site.xml  –  Assignment 1, Big Data Systems, BITS ZG522
+  For: 4 GB RAM VM – cap YARN at 2 GB, disable virt-mem checks
+  Path in VM: $HADOOP_HOME/etc/hadoop/yarn-site.xml
+-->
+<configuration>
+
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>127.0.0.1</value>
+  </property>
+  <property>
+    <name>yarn.acl.enable</name>
+    <value>0</value>
+  </property>
+
+  <!-- Env whitelist (typo `PERPEND` fixed to `PREPEND`) -->
+  <property>
+    <name>yarn.nodemanager.env-whitelist</name>
+    <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
+  </property>
+
+  <!-- Memory: give YARN 2 GB total; leave the rest for OS + daemons -->
+  <property>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value>2048</value>
+  </property>
+  <property>
+    <name>yarn.scheduler.minimum-allocation-mb</name>
+    <value>256</value>
+  </property>
+  <property>
+    <name>yarn.scheduler.maximum-allocation-mb</name>
+    <value>1536</value>
+  </property>
+
+  <!-- Skip virt-mem checks; low-RAM VMs otherwise kill containers -->
+  <property>
+    <name>yarn.nodemanager.vmem-check-enabled</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.pmem-check-enabled</name>
+    <value>false</value>
+  </property>
+
+</configuration>

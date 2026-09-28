@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  core-site.xml  –  Assignment 1, Big Data Systems, BITS ZG522
+  For: single-node pseudo-cluster on Ubuntu 22.04, 4 GB RAM, user `hdoop`
+  Path in VM: $HADOOP_HOME/etc/hadoop/core-site.xml
+-->
+<configuration>
+
+  <!-- Temp / staging area for Hadoop -->
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>/home/hdoop/tmpdata</value>
+    <description>Base for other temp dirs.</description>
+  </property>
+
+  <!-- Default filesystem URI (modern property name; fs.default.name still works but is deprecated) -->
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://127.0.0.1:9000</value>
+  </property>
+
+  <!-- Proxy-user settings so Hive/HBase can impersonate the hdoop user when talking to HDFS -->
+  <property>
+    <name>hadoop.proxyuser.hdoop.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hdoop.groups</name>
+    <value>*</value>
+  </property>
+
+</configuration>

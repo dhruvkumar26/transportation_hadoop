@@ -1,0 +1,39 @@
+# =============================================================================
+# create_tables.hbase
+# Assignment 1, Big Data Systems, BITS ZG522
+#
+# HBase shell script.  Creates two tables that demo NoSQL wide-column storage.
+#
+# HOW TO RUN:
+#   hbase shell create_tables.hbase
+# =============================================================================
+
+# Drop existing tables if re-running (safe on first run — will just warn)
+disable 'zone_lookup'   rescue nil
+drop    'zone_lookup'   rescue nil
+disable 'trip_by_zone'  rescue nil
+drop    'trip_by_zone'  rescue nil
+
+# ---------------------------------------------------------------------------
+# Table 1: zone_lookup
+#   Row key : LocationID (int, stored as string)
+#   Column families:
+#     info : borough, zone_name, service_zone
+# ---------------------------------------------------------------------------
+create 'zone_lookup', {NAME => 'info', VERSIONS => 1}
+
+# ---------------------------------------------------------------------------
+# Table 2: trip_by_zone
+#   Row key : <pu_loc_id>_<hour>          (e.g. "132_18" = JFK, 6 PM)
+#   Column families:
+#     stats  : trips, avg_fare, avg_tip_pct, avg_duration_min
+#     top_do : json blob of top-5 drop-off zones
+# ---------------------------------------------------------------------------
+create 'trip_by_zone', {NAME => 'stats', VERSIONS => 1}, {NAME => 'top_do', VERSIONS => 1}
+
+# Show what we made
+list
+
+# Describe both
+describe 'zone_lookup'
+describe 'trip_by_zone'

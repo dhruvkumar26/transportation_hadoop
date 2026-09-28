@@ -1,0 +1,46 @@
+# === Data files – never commit these ===
+*.parquet
+*.tar.gz
+*.zip
+
+# CSV: allow small samples in reference/sample-data/ but block big ones elsewhere
+*.csv
+!reference/**/*.csv
+
+# === Local staging / logs ===
+staging/
+logs/
+*.log
+tmp/
+tmpdata/
+
+# === Python ===
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.env
+
+# === Screenshots (belong in the repo but usually large; keep them but flag big ones) ===
+# Uncomment next line if you'd rather NOT commit screenshots and put them in a shared drive:
+# screenshots/
+
+# === OS junk ===
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# === IDE ===
+.vscode/
+.idea/
+*.iml
+.claude/
+
+# === Hadoop / Hive / HBase runtime output (if anyone accidentally cd's into these) ===
+derby.log
+metastore_db/
+hive-*.log
+hbase-*.log
+target/
