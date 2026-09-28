@@ -170,3 +170,4 @@ Once clean, next: **`05-run-hive.md`**.
 | `Permission denied: python3: /home/…mapper.py` | The `-files` argument copied the file but shebang line is missing. `run.sh` invokes with explicit `python3 mapper.py`, so this shouldn't happen. |
 | Reducer emits `_SUCCESS` only, no data | Mapper filtered everything as BAD — check `Custom.Rows OK` counter, likely field count issue |
 | Job stuck at `map 0 % reduce 0 %` for >2 min | YARN memory pressure — `yarn node -list -showDetails` should show `2048 MB` available |
+| Output has duplicate `<pu_loc_id>\t<hour>` rows; `Reduce output records` in the millions | The classic Hadoop Streaming default-key bug: only the first tab-separated field becomes the key, so shuffle groups by `pu_loc_id` alone and hour ordering is arbitrary within a reducer. Fix: pass `-D stream.num.map.output.key.fields=2` (with a KeyFieldBasedPartitioner using `-k1,2`) so the first TWO fields form the composite key. Already baked into `run.sh`. |

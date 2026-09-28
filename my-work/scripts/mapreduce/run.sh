@@ -38,9 +38,12 @@ echo ""
 hadoop jar "$STREAMING_JAR" \
     -D mapreduce.job.name="TripsPerZonePerHour" \
     -D mapreduce.job.reduces=2 \
+    -D stream.num.map.output.key.fields=2 \
+    -D mapreduce.partition.keypartitioner.options="-k1,2" \
     -files "$SCRIPT_DIR/mapper.py,$SCRIPT_DIR/reducer.py" \
-    -mapper  "python3 mapper.py"  \
-    -reducer "python3 reducer.py" \
+    -mapper    "python3 mapper.py"  \
+    -reducer   "python3 reducer.py" \
+    -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
     -input   "$INPUT" \
     -output  "$OUTPUT"
 

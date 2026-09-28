@@ -4,8 +4,11 @@ reducer.py
 ----------
 Native Hadoop Streaming reducer for the TRIPS-PER-ZONE-PER-HOUR job.
 
-Reads mapper output on STDIN. Hadoop guarantees that all rows with the same
-key (here, "<pu_loc_id>\t<hour>") arrive contiguously and sorted.
+Reads mapper output on STDIN. run.sh sets
+    stream.num.map.output.key.fields=2
+so Hadoop treats "<pu_loc_id>\t<hour>" as the composite key and guarantees
+that all rows sharing that pair arrive contiguously and sorted at one
+reducer.
 
 Emits: <pu_loc_id>\t<hour>\t<count>
 """
