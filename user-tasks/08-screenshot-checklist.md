@@ -1,6 +1,6 @@
 # Phase 8 – Screenshot Checklist (master list)
 
-**Owner:** M2 (Presentation Coordinator — you'll need every one of these for the deck).
+**Owner:** Manikandan (Presentation Coordinator — you'll need every one of these for the deck).
 **Purpose:** consolidate every screenshot the report + presentation needs, organized by phase, so nothing is missed.
 
 Store all under `screenshots/phase-N/<memberID>/` in the repo. Since every member reproduces every phase for learning, the phase owner's screenshots go into the final report; the others' are personal evidence for the viva.
@@ -98,7 +98,7 @@ Put screenshots inline in Part B of the report, grouped by phase. Each screensho
 - A caption ("Figure N — YARN Resource Manager UI showing 4 Pig applications SUCCEEDED").
 - A one-line explanation of what it proves.
 
-The deck (M2) uses ~10 of these for the 5-minute presentation:
+The deck (Manikandan) uses ~10 of these for the 5-minute presentation:
 - 1 architecture diagram (from `my-work/diagrams/`)
 - 1 NameNode overview (proves HDFS is up)
 - 1 YARN UI with Pig apps (proves distributed processing)

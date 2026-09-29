@@ -3,7 +3,7 @@
 **Course:** CC ZG522 · Big Data Systems · First Semester 2026-27
 **Assignment:** #1 · Big Data Systems Implementation & Analytics
 **Domain:** Transportation
-**Team size:** 6 (M1–M6)
+**Team:** Dhruv Kumar (Leader) · Manikandan B (Presenter) · Sai Krishna Mohan · Ramya K · Sri Lalithya · Vishwa Vajendra
 
 ---
 

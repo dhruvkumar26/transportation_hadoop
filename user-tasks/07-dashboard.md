@@ -1,6 +1,6 @@
 # Phase 7 – Streamlit Dashboard
 
-**Phase owner:** M6
+**Phase owner:** Vishwa
 **Time:** 15–20 minutes.
 **Prerequisites:** 5 CSVs in `~/bigdata-assignment/my-work/dashboard/data/` (produced at end of Phase 5).
 
@@ -119,7 +119,7 @@ Use Firefox's **full-page screenshot** (F12 → screenshot icon in device toolba
 
 ---
 
-## Explaining the dashboard in the viva (M6's angle)
+## Explaining the dashboard in the viva (Vishwa's angle)
 
 - **Why Streamlit?** It reads flat files and gives us interactive controls (sliders, radio buttons) in <200 lines of Python. No JS, no build step. Perfect for demoing analytics.
 - **Data path recap** — HDFS raw CSV → Pig ETL → HDFS `/clean/trips_enriched` → Hive `fact_trips` external table → 5 analytics queries → Hive `INSERT OVERWRITE DIRECTORY` writes CSV to HDFS `/results/hive/*` → `hdfs dfs -getmerge` pulls to local disk → Streamlit reads from local disk.

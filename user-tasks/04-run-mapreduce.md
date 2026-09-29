@@ -1,6 +1,6 @@
 # Phase 4 – Native MapReduce (Hadoop Streaming, Python)
 
-**Phase owner:** M3
+**Phase owner:** Sai Krishna Mohan
 **Time:** 5–10 minutes.
 **Prerequisites:** `/clean/trips` populated by Phase 3.
 

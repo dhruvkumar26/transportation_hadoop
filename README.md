@@ -9,7 +9,7 @@
 | Doc | Purpose |
 |---|---|
 | [PLAN.md](PLAN.md) | Master plan, phases, RAM budget |
-| [TEAM-ASSIGNMENTS.md](TEAM-ASSIGNMENTS.md) | Who owns what (M1–M6) |
+| [TEAM-ASSIGNMENTS.md](TEAM-ASSIGNMENTS.md) | Who owns what (Dhruv–Vishwa) |
 | [user-tasks/](user-tasks/) | Step-by-step guides your team runs in the VM |
 | [my-work/](my-work/) | Scripts, configs, dashboard, report |
 | [reference/](reference/) | Dataset schema + small sample data |

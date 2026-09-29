@@ -213,12 +213,12 @@ All three are documented in the `user-tasks/` MDs so future team members can't h
 
 ### Q37. Everyone on this team is technical — how did you split the work?
 
-M1 (Group Leader) — env setup + report compilation.
-M2 (Presentation Coordinator) — HBase phase + deck + viva.
-M3 — data ingestion + native MR.
-M4 — Pig ETL.
-M5 — Hive analytics.
-M6 — Streamlit dashboard.
+Dhruv (Group Leader) — env setup + report compilation.
+Manikandan (Presentation Coordinator) — HBase phase + deck + viva.
+Sai Krishna Mohan — data ingestion + native MR.
+Ramya — Pig ETL.
+Sri Lalithya — Hive analytics.
+Vishwa — Streamlit dashboard.
 Each member owns one theory section of Part A too. Screenshots captured by phase owner but reproduced by all others on their own VMs for viva readiness.
 
 ### Q38. Show me one concrete business decision this pipeline enables.

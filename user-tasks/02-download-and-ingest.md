@@ -1,6 +1,6 @@
 # Phase 2 – Download NYC Taxi Data + HDFS Ingestion
 
-**Phase owner:** M3
+**Phase owner:** Sai Krishna Mohan
 **Time:** 20–30 minutes (mostly network-bound).
 **Prerequisites:** Hadoop up (`jps` shows NN, DN, SNN, RM, NM).
 

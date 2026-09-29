@@ -179,5 +179,5 @@ See `TEAM-ASSIGNMENTS.md` for the 6-person split.
 
 ## 8. Open follow-ups
 
-- If team members' real names are shared, I'll swap "M1…M6" placeholders in `TEAM-ASSIGNMENTS.md`.
+- If team members' real names are shared, I'll swap "Dhruv…Vishwa" placeholders in `TEAM-ASSIGNMENTS.md`.
 - Confirm which member acts as **Group Leader** and **Presentation Coordinator** (assignment requires both nominations).

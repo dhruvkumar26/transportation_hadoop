@@ -1,6 +1,6 @@
 # Phase 6 – HBase: NoSQL Zone Lookup Demo
 
-**Phase owner:** M2
+**Phase owner:** Manikandan
 **Time:** 15–20 minutes.
 **Prerequisites:** HBase installed (Phase 1). **Hive stopped** (memory).
 
@@ -213,7 +213,7 @@ Keep HBase itself running only if the next demo needs it; otherwise `stop-hbase.
 
 ---
 
-## Explaining HBase in the viva (M2's angle)
+## Explaining HBase in the viva (Manikandan's angle)
 
 - **HBase = distributed sorted map**. Keys are lexicographically ordered → range scans are cheap on adjacent keys.
 - **Column families** are physically separate stores; that's why we defined `info` and `stats` separately.

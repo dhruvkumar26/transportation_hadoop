@@ -1,6 +1,6 @@
 # Phase 5 – Hive: Warehouse Tables + 5 Business Analytics Queries
 
-**Phase owner:** M5
+**Phase owner:** Sri Lalithya
 **Time:** 30–45 minutes (5 substantial queries against 8 M rows on a 4 GB VM).
 **Prerequisites:** `/clean/trips_enriched` populated (Phase 3). Hive installed (Phase 1). **HBase stopped** (`stop-hbase.sh`) — Hive+HBase together will run out of memory.
 

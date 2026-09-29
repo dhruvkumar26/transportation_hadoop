@@ -1,6 +1,6 @@
 # Phase 1 – Install Apache Pig, Hive & HBase
 
-**Phase owner:** M1 (writes canonical steps) — M4, M5, M6 verify by reproducing on their VMs.
+**Phase owner:** Dhruv (writes canonical steps) — Ramya, Sri Lalithya, Vishwa verify by reproducing on their VMs.
 **Time:** 45–60 minutes total across the three tools.
 **Prerequisite:** Phase 0.5 clean (Hadoop 3.2.1 pseudo-cluster verified with WordCount).
 
@@ -316,7 +316,7 @@ Once verified, we move to **`02-download-and-ingest.md`**.
 
 ---
 
-## Reproduce checklist (for M4, M5, M6 running the same steps on their VM)
+## Reproduce checklist (for Ramya, Sri Lalithya, Vishwa running the same steps on their VM)
 
 - [ ] `.bashrc` block appended and sourced.
 - [ ] Pig extracted to `/home/hdoop/pig-0.17.0`; `pig -version` prints 0.17.0.

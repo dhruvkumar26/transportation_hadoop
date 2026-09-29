@@ -1,6 +1,6 @@
 # Phase 0.5 – Environment Sanity Check + Config Fixes
 
-**Owner:** M1 (Group Leader)
+**Owner:** Dhruv (Group Leader)
 **Time needed:** 20–30 minutes
 **Prerequisite:** Hadoop 3.2.1 already installed per Dr. Venkat's guide, WordCount ran successfully.
 
