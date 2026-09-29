@@ -1,0 +1,138 @@
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/hbase$ hbase-daemon.sh start thrift
+thrift running as process 76312. Stop it first.
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/hbase$ netstat -tln | grep 9090     # or: ss -tln | grep 9090
+tcp6       0      0 :::9090                 :::*                    LISTEN     
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/hbase$ pip3 install --user happybase
+Collecting happybase
+  Downloading happybase-1.3.0-py2.py3-none-any.whl (26 kB)
+Collecting thriftpy2>=0.4
+  Downloading thriftpy2-0.7.1-cp310-cp310-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (2.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.6/2.6 MB 8.7 MB/s eta 0:00:00
+Collecting importlib-resources
+  Downloading importlib_resources-7.1.0-py3-none-any.whl (37 kB)
+Requirement already satisfied: six in /usr/lib/python3/dist-packages (from happybase) (1.16.0)
+Collecting ply<4.0,>=3.4
+  Downloading ply-3.11-py2.py3-none-any.whl (49 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 49.6/49.6 KB 18.5 MB/s eta 0:00:00
+Collecting ijson<4.0,>=3.0
+  Downloading ijson-3.5.1-cp310-cp310-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (133 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.2/133.2 KB 29.9 MB/s eta 0:00:00
+Installing collected packages: ply, importlib-resources, ijson, thriftpy2, happybase
+Successfully installed happybase-1.3.0 ijson-3.5.1 importlib-resources-7.1.0 ply-3.11 thriftpy2-0.7.1
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/hbase$ python3 load_zones.py /home/hdoop/staging/taxi_zone_lookup.csv
+Inserted 265 zones into HBase table `zone_lookup`.
+
+GET zone_lookup, '132':
+  info:borough = Queens
+  info:service_zone = Airports
+  info:zone_name = JFK Airport
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/hbase$ hbase shell <<'EOF'
+get 'zone_lookup', '132'
+get 'zone_lookup', '138'
+get 'zone_lookup', '1'
+EOF
+2026-09-29 17:19:47,106 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+HBase Shell
+Use "help" to get list of supported commands.
+Use "exit" to quit this interactive shell.
+For Reference, please visit: http://hbase.apache.org/2.0/book.html#shell
+Version 2.4.18, ra1767f4d76859c0068720a6c1e5cb78282ebfe1e, Tue May 21 08:45:43 UTC 2024
+Took 0.0010 seconds                                                                                                                                      
+hbase:001:0> get 'zone_lookup', '132'
+COLUMN                                  CELL                                                                                                             
+ info:borough                           timestamp=2026-09-29T17:18:47.867, value=Queens                                                                  
+ info:service_zone                      timestamp=2026-09-29T17:18:47.867, value=Airports                                                                
+ info:zone_name                         timestamp=2026-09-29T17:18:47.867, value=JFK Airport                                                             
+1 row(s)
+Took 0.4126 seconds                                                                                                                                      
+hbase:002:0> get 'zone_lookup', '138'
+COLUMN                                  CELL                                                                                                             
+ info:borough                           timestamp=2026-09-29T17:18:47.877, value=Queens                                                                  
+ info:service_zone                      timestamp=2026-09-29T17:18:47.877, value=Airports                                                                
+ info:zone_name                         timestamp=2026-09-29T17:18:47.877, value=LaGuardia Airport                                                       
+1 row(s)
+Took 0.0031 seconds                                                                                                                                      
+hbase:003:0> get 'zone_lookup', '1'
+COLUMN                                  CELL                                                                                                             
+ info:borough                           timestamp=2026-09-29T17:18:47.807, value=EWR                                                                     
+ info:service_zone                      timestamp=2026-09-29T17:18:47.807, value=EWR                                                                     
+ info:zone_name                         timestamp=2026-09-29T17:18:47.807, value=Newark Airport                                                          
+1 row(s)
+Took 0.0109 seconds                                                                                                                                      
+hbase:004:0> 
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/hbase$ hbase shell <<'EOF'
+scan 'zone_lookup', { COLUMNS => 'info:borough', FILTER => "SingleColumnValueFilter('info','borough',=,'binary:EWR')" }
+EOF
+2026-09-29 17:21:09,112 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+HBase Shell
+Use "help" to get list of supported commands.
+Use "exit" to quit this interactive shell.
+For Reference, please visit: http://hbase.apache.org/2.0/book.html#shell
+Version 2.4.18, ra1767f4d76859c0068720a6c1e5cb78282ebfe1e, Tue May 21 08:45:43 UTC 2024
+Took 0.0008 seconds                                                                                                                                      
+hbase:001:0> scan 'zone_lookup', { COLUMNS => 'info:borough', FILTER => "SingleColumnValueFilter('info','borough',=,'binary:EWR')" }
+ROW                                     COLUMN+CELL                                                                                                      
+ 1                                      column=info:borough, timestamp=2026-09-29T17:18:47.807, value=EWR                                                
+1 row(s)
+Took 0.3324 seconds                                                                                                                                      
+hbase:002:0> 
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/hbase$ echo "count 'zone_lookup'" | hbase shell 2>/dev/null | tail -3
+Took 0.3100 seconds
+=> 265
+hbase:002:0> 
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/hbase$ cat > /tmp/load_trip_by_zone.py <<'PY'
+import csv, happybase, sys
+
+conn  = happybase.Connection("127.0.0.1", 9090)
+table = conn.table("trip_by_zone")
+
+# The exported Hive q1_hotspots.csv has: pickup_hour, pu_borough, pu_zone, trips
+with open("/home/hdoop/bigdata-assignment/my-work/dashboard/data/q1_hotspots.csv") as f:
+    r = csv.reader(f)
+    n = 0
+    with table.batch(batch_size=200) as b:
+        for row in r:
+            if len(row) < 4: continue
+            hour, borough, zone, trips = row
+            key = f"{zone.replace(' ','_')}_{int(hour):02d}".encode()
+            b.put(key, {
+                b"stats:trips":   trips.encode(),
+                b"stats:borough": borough.encode(),
+                b"stats:zone":    zone.encode(),
+            })
+python3 /tmp/load_trip_by_zone.pyp_by_zone")
+Wrote 5410 rows to trip_by_zone
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/hbase$ hbase shell <<'EOF'
+scan 'trip_by_zone', {LIMIT => 5}
+EOF
+2026-09-29 17:23:06,460 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+HBase Shell
+Use "help" to get list of supported commands.
+Use "exit" to quit this interactive shell.
+For Reference, please visit: http://hbase.apache.org/2.0/book.html#shell
+Version 2.4.18, ra1767f4d76859c0068720a6c1e5cb78282ebfe1e, Tue May 21 08:45:43 UTC 2024
+Took 0.0009 seconds                                                                                                                                      
+hbase:001:0> scan 'trip_by_zone', {LIMIT => 5}
+ROW                                     COLUMN+CELL                                                                                                      
+ Allerton/Pelham_Gardens_03             column=stats:borough, timestamp=2026-09-29T17:22:52.030, value=Bronx                                             
+ Allerton/Pelham_Gardens_03             column=stats:trips, timestamp=2026-09-29T17:22:52.030, value=4                                                   
+ Allerton/Pelham_Gardens_03             column=stats:zone, timestamp=2026-09-29T17:22:52.030, value=Allerton/Pelham Gardens                              
+ Allerton/Pelham_Gardens_04             column=stats:borough, timestamp=2026-09-29T17:22:52.050, value=Bronx                                             
+ Allerton/Pelham_Gardens_04             column=stats:trips, timestamp=2026-09-29T17:22:52.050, value=14                                                  
+ Allerton/Pelham_Gardens_04             column=stats:zone, timestamp=2026-09-29T17:22:52.050, value=Allerton/Pelham Gardens                              
+ Allerton/Pelham_Gardens_05             column=stats:borough, timestamp=2026-09-29T17:22:52.071, value=Bronx                                             
+ Allerton/Pelham_Gardens_05             column=stats:trips, timestamp=2026-09-29T17:22:52.071, value=12                                                  
+ Allerton/Pelham_Gardens_05             column=stats:zone, timestamp=2026-09-29T17:22:52.071, value=Allerton/Pelham Gardens                              
+ Allerton/Pelham_Gardens_06             column=stats:borough, timestamp=2026-09-29T17:22:52.079, value=Bronx                                             
+ Allerton/Pelham_Gardens_06             column=stats:trips, timestamp=2026-09-29T17:22:52.079, value=25                                                  
+ Allerton/Pelham_Gardens_06             column=stats:zone, timestamp=2026-09-29T17:22:52.079, value=Allerton/Pelham Gardens                              
+ Allerton/Pelham_Gardens_07             column=stats:borough, timestamp=2026-09-29T17:22:52.116, value=Bronx                                             
+ Allerton/Pelham_Gardens_07             column=stats:trips, timestamp=2026-09-29T17:22:52.116, value=18                                                  
+ Allerton/Pelham_Gardens_07             column=stats:zone, timestamp=2026-09-29T17:22:52.116, value=Allerton/Pelham Gardens                              
+5 row(s)
+Took 0.4141 seconds                                                                                                                                      
+hbase:002:0> 
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/hbase$ hbase-daemon.sh stop thrift
+running thrift, logging to /home/hdoop/hbase-2.4.18/logs/hbase-hdoop-thrift-dhruv.out
+stopping thrift.
+hdoop@dhruv:~/bigdata-assignment/my-work/scripts/hbase$ 
