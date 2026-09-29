@@ -96,34 +96,9 @@ hdfs dfs -chmod -R 1777 /user/hive/warehouse
 
 ### 3d. Configure Hive to use embedded Derby metastore
 
-```bash
-cp $HIVE_HOME/conf/hive-default.xml.template $HIVE_HOME/conf/hive-site.xml
-```
+**DO NOT copy `hive-default.xml.template` to `hive-site.xml`.** That template contains its own `<property>javax.jdo.option.ConnectionURL</property>` with a *relative-path* Derby URL (`databaseName=metastore_db`). Hadoop XML config is **last-property-wins** — so if you add a second `ConnectionURL` on top, the template's original one silently overrides yours and Derby ends up creating a fresh, empty `metastore_db/` folder in whatever working directory you launch `hive` from. Every subsequent `CREATE TABLE` then fails with `Required table missing : "VERSION"`.
 
-Open `hive-site.xml` and add these properties **inside the `<configuration>` root**, at the top (before the auto-generated ones):
-
-```xml
-  <property>
-    <name>javax.jdo.option.ConnectionURL</name>
-    <value>jdbc:derby:;databaseName=/home/hdoop/hive_metastore_db;create=true</value>
-  </property>
-  <property>
-    <name>hive.metastore.warehouse.dir</name>
-    <value>/user/hive/warehouse</value>
-  </property>
-  <property>
-    <name>system:java.io.tmpdir</name>
-    <value>/tmp/hive</value>
-  </property>
-  <property>
-    <name>system:user.name</name>
-    <value>hdoop</value>
-  </property>
-```
-
-Also, edit `hive-site.xml` and search for `hive.txn.xlock.iow` — there is a bad `&#8;` character in the template's description that breaks XML parsing on some builds. Remove or replace with plain text.
-
-Simpler alternative — a minimal `hive-site.xml`:
+Instead, write a **minimal, single-source-of-truth `hive-site.xml`** — one `ConnectionURL`, no template inheritance:
 
 ```bash
 cat > $HIVE_HOME/conf/hive-site.xml <<'EOF'
@@ -149,17 +124,47 @@ cat > $HIVE_HOME/conf/hive-site.xml <<'EOF'
 EOF
 ```
 
-### 3e. Initialize the metastore schema
+**Verify — this must return exactly `2`** (one `<name>ConnectionURL</name>` + one `<value>…</value>`):
 
 ```bash
-schematool -dbType derby -initSchema
+grep -c ConnectionURL $HIVE_HOME/conf/hive-site.xml
+# → 2   ✓ correct
+# → 4+  ✗ a template got merged in — nuke and rewrite the file
 ```
 
-Expected last line:
+Also confirm the value has the **absolute** path:
+
+```bash
+grep -A 1 ConnectionURL $HIVE_HOME/conf/hive-site.xml
+# expected:
+#   <value>jdbc:derby:;databaseName=/home/hdoop/hive_metastore_db;create=true</value>
+```
+
+### 3e. Initialize the metastore schema
+
+**Run this from your HOME directory** — schematool creates any incidental files (`derby.log`) in the current working directory, so running it under a project folder litters that folder:
+
+```bash
+cd ~
+schematool -dbType derby -initSchema 2>&1 | tail -5
+```
+
+Expected last lines:
 
 ```
+Metastore connection URL:  jdbc:derby:;databaseName=/home/hdoop/hive_metastore_db;create=true
+...
 Initialization script completed
 schemaTool completed
+```
+
+**The `Metastore connection URL` line MUST show the absolute `/home/hdoop/hive_metastore_db` path.** If it says `databaseName=metastore_db` (no path), your `hive-site.xml` is being overridden by a template copy — redo Step 3d.
+
+Verify the metastore is where it should be:
+
+```bash
+ls -la /home/hdoop/hive_metastore_db | head -3
+# expected: shows a Derby database directory (seg0, service.properties, tmp, etc.)
 ```
 
 ### 3f. Smoke test
@@ -335,6 +340,8 @@ Once verified, we move to **`02-download-and-ingest.md`**.
 | `schematool` fails with `Underlying cause: java.sql.SQLException: Failed to create database` | Leftover `metastore_db` | `rm -rf /home/hdoop/hive_metastore_db metastore_db` then re-run |
 | `hive` throws `java.lang.NoSuchMethodError ... Preconditions.checkArgument` | Guava conflict not fixed | Redo Step 3b exactly |
 | `SAXParseException` when starting `hive` | Bad `&#8;` in `hive-default.xml.template` | Use the minimal `hive-site.xml` in Step 3d |
+| `Required table missing : "VERSION"` when running a `CREATE`/`INSERT` after DDL, even though `SHOW DATABASES` worked | `hive-site.xml` has two `ConnectionURL` properties — the template's relative-path one silently overrode yours, so Derby is creating empty `metastore_db/` dirs in whatever cwd `hive` was launched from | Nuke every stale metastore + rewrite hive-site.xml as single-source minimal file:<br/>`rm -rf /home/hdoop/hive_metastore_db /home/hdoop/metastore_db`<br/>`find ~ -maxdepth 6 -name "metastore_db" -type d \| xargs rm -rf`<br/>`find ~ -maxdepth 6 \( -name derby.log -o -name '*.lck' \) \| xargs rm -f`<br/>Redo Step 3d exactly, then Step 3e |
+| Derby creates fresh empty `metastore_db/` in every directory you cd into | Same as above — duplicate `ConnectionURL` in hive-site.xml means the relative-path (template) one wins | Same fix as above |
 | HBase `HMaster` not showing in `jps` | Port 16000/16010 already used | Check with `sudo lsof -i :16010`; kill offender |
 | HBase can't connect to HDFS | Hadoop is stopped | `start-dfs.sh && start-yarn.sh` first |
 | `WARN util.NativeCodeLoader` when running anything | Native lib warning | Ignore — cosmetic |
