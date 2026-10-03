@@ -11,9 +11,9 @@
 
 ### **NYC Taxi Trip Analytics – Demand, Revenue & Congestion Insights**
 
-Dataset: **NYC Taxi & Limousine Commission (TLC) Yellow Taxi Trip Records**, 2024 data (public, no auth). One of the largest public transportation datasets in the world.
+Dataset: **NYC Taxi & Limousine Commission (TLC) Yellow Taxi Trip Records**, 2026 data (public, no auth). One of the largest public transportation datasets in the world.
 
-**Volume plan (tuned for 4 GB RAM):** 3 months of Yellow Taxi data (Jan–Mar 2024) ≈ **9–10 million trip records**, **~750 MB Parquet / ~3 GB expanded CSV**. Genuinely "big" for a pseudo-cluster demo; single-machine SQLite/pandas struggles here.
+**Volume plan (tuned for 4 GB RAM):** 3 months of Yellow Taxi data (Jan–Mar 2026) ≈ **11.1 million trip records**, **~190 MB Parquet / ~1.17 GB CSV on HDFS** (19 columns; extra TLC fields stripped at ingest). Genuinely "big" for a pseudo-cluster demo; single-machine SQLite/pandas struggles here.
 
 Data dictionary + monthly Parquet files: https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
 

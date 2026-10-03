@@ -19,7 +19,7 @@ Big Data here isn't about the row count alone — it's about the *combination* o
 
 ### Q3. Walk me through the 5 Vs for this dataset.
 
-- **Volume**: 9.55 M rows / 985 MB for 3 months; scales linearly to 40 M/year, billions lifetime.
+- **Volume**: 11.08 M rows / ~1.17 GB CSV for 3 months (Jan–Mar 2026); scales linearly to ~44 M/year, billions lifetime.
 - **Velocity**: monthly batch drops from the TLC portal; our HDFS is partitioned by year/month to mirror that cadence.
 - **Variety**: structured trip fact + zone dimension + optional weather; joined via Pig.
 - **Veracity**: real messy data — Pig ETL dropped 11.25 % of rows (bad fares, zero distance, missing zones).

@@ -32,7 +32,7 @@ Every member speaks. Faculty may cold-call anyone in viva regardless of slide ow
 - **Subtitle:** BITS ZG522 · Big Data Systems · Assignment 1
 - **Team:** Dhruv (Group Leader), Manikandan (Presentation Coordinator), Sai Krishna Mohan, Ramya, Sri Lalithya, Vishwa
 - **Domain:** Transportation
-- One-line hook: *"9.5 million real NYC taxi trips, end-to-end from raw Parquet to interactive dashboard, on a 4 GB VM."*
+- One-line hook: *"11 million real NYC taxi trips, end-to-end from raw Parquet to interactive dashboard, on a 4 GB VM."*
 
 ## Slide 2 · Problem & business questions (Dhruv)
 
@@ -42,7 +42,7 @@ Every member speaks. Faculty may cold-call anyone in viva regardless of slide ow
   3. **Congestion signal** — which zone pairs are systematically slow?
   4. **Airport trip profile** — JFK, LGA, EWR patterns.
   5. **Payment behaviour** — card vs cash split.
-- Dataset: NYC TLC Yellow Taxi Records, **Jan–Mar 2024, 9.55 M raw rows, 985 MB CSV**.
+- Dataset: NYC TLC Yellow Taxi Records, **Jan–Mar 2026, 11.08 M raw rows, ~1.17 GB CSV**.
 
 ## Slide 3 · Why Big Data — the 5 Vs (Manikandan)
 
@@ -50,10 +50,10 @@ Compact table:
 
 | V | Manifestation |
 |---|---|
-| Volume | 9.55 M rows / 985 MB / scales to billions |
+| Volume | 11.08 M rows / ~1.17 GB / scales to billions |
 | Velocity | Monthly batch drops, partitioned by year/month |
 | Variety | Trip fact + zone dim + optional weather |
-| Veracity | Pig ETL dropped 11.25 % dirty rows |
+| Veracity | Pig ETL drops ~10–12 % dirty rows (see `_counts/` on HDFS) |
 | Value | 5 distinct business decisions driven |
 
 Punchline: *"A single-node RDBMS could answer one of these; not all five simultaneously across years while ingesting new data."*
@@ -80,22 +80,22 @@ Verbal: *"Every layer runs on YARN; every result is in HDFS; the dashboard reads
 
 - Hadoop 3.2.1 pseudo-cluster on Ubuntu 22.04, 4 GB RAM.
 - `jps` shows the 7 daemons: NameNode, DataNode, SNN, ResourceManager, NodeManager, JobHistoryServer, (HMaster when running HBase).
-- **Screenshot: NameNode Web UI (`:9870`) showing `/raw/trips/year=2024/month=01/…`**
+- **Screenshot: NameNode Web UI (`:9870`) showing `/raw/trips/year=2026/month=01/…`**
 - Point out block size (128 MB), replication factor 1 (single-node), `fsck` reports HEALTHY.
 
 ## Slide 6 · Processing — Pig ETL + native MR (Sai Krishna Mohan + Ramya)
 
 **Two mini-panels:**
 
-- **Ramya · Pig** — `01_clean_trips.pig` (drop 11.25 % bad rows) + `02_enrich_trips.pig` (derive hour/day/duration, JOIN zone lookup). 9.55 M → 8.48 M rows in 5 min 12 s across 2 MR jobs.
+- **Ramya · Pig** — `01_clean_trips.pig` (drop bad rows) + `02_enrich_trips.pig` (derive hour/day/duration, JOIN zone lookup). **11.08 M raw** → clean count from `_counts/clean` (re-run after 2026 ingest).
   - *Screenshot: YARN UI showing `PigLatin:02_enrich_trips.pig` SUCCEEDED with 9 mappers, 2 reducers.*
-- **Sai Krishna Mohan · Native Streaming MR** — mapper.py emits `(pu_loc_id, hour) → 1`; reducer sums. Uses `stream.num.map.output.key.fields=2` for composite-key shuffle. 8.48 M input → **5,421 unique (zone, hour) aggregates** in 35 s.
-  - *Screenshot: YARN counters page showing `Rows OK=8,479,421` custom counter.*
+- **Sai Krishna Mohan · Native Streaming MR** — mapper.py emits `(pu_loc_id, hour) → 1`; reducer sums. Uses `stream.num.map.output.key.fields=2` for composite-key shuffle. Clean-trip count in → **unique (zone, hour) aggregates** out (re-run MR after Pig).
+  - *Screenshot: YARN counters page showing `Rows OK=…` custom counter.*
 - Punchline: *"Pig proves the pipeline scales; native MR proves we understand the shuffle."*
 
 ## Slide 7 · Analytics — Hive (Sri Lalithya)
 
-- Hive 3.1.3 with embedded Derby metastore. `fact_trips` external table over Pig output (8,479,421 rows), `dim_zone` ORC (265 rows).
+- Hive 3.1.3 with embedded Derby metastore. `fact_trips` external table over Pig output (~10 M cleaned rows), `dim_zone` ORC (265 rows).
 - 5 analytical queries → 5 ORC result tables → 5 CSV exports.
 - **Screenshot: `EXPLAIN` plan showing the Map/Reduce stages Hive generates.**
 - Wall time: ~7 min for all 5 queries on 4 GB.
@@ -106,14 +106,14 @@ Verbal: *"Every layer runs on YARN; every result is in HDFS; the dashboard reads
 - **Manikandan · HBase** — random-access companion to Hive. `zone_lookup` (265 rows, `info` family) + `trip_by_zone` (5,410 rows from Q1 rollup, `stats` family). `get 'zone_lookup','132'` returns JFK in <1 ms.
   - *Screenshot: HBase Master UI at `:16010`.*
 - **Vishwa · Streamlit dashboard** — 5 interactive Plotly charts, KPI row up top.
-  - **KPIs:** 8.48 M trips · **$235.12 M** revenue · **$33.70** avg fare · **4.7 %** avg tip.
+  - **KPIs:** trip count · revenue · avg fare · avg tip (from CSV export after 2026 Hive run).
   - *Screenshot: dashboard home + one drill-down (e.g. Q4 JFK).*
 - Punchline: *"Hive for batch analytics, HBase for real-time lookups, Streamlit for humans — three access patterns on one HDFS."*
 
 ## Slide 9 · Key insights & closing (Dhruv)
 
 - **Where is the money?** Manhattan card revenue (~$150 M / 3 mo) — 3× Queens (~$50 M), 30× everything else.
-- **Where is the demand?** Midtown Center at 6 PM: **38,756 trips** in Jan-Mar 2024.
+- **Where is the demand?** Midtown Center at 6 PM — top zone/hour from Q1 after 2026 Hive run.
 - **Where does the pipeline break down first?** Zone 186 (Penn Station) → 230 (Times Sq): **17.16 min/mile** at 10 AM — a 1-mile trip taking 17 minutes.
 - **Where should banks deploy more POS terminals?** Staten Island — **31 % cash share** (2× the city average).
 - Closing: *"Every line of this pipeline is checked into git — the report has the exact numbers, run this weekend on a $0 pseudo-cluster."*

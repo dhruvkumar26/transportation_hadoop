@@ -48,8 +48,8 @@ If the volume were 100,000 rows we would use Postgres, run a few `GROUP BY` quer
 
 | Property | Numbers we hit | Consequence |
 |---|---|---|
-| Bulk write, monthly | ~9 million rows / month (Jan+Feb+Mar 2024 = **9.55 M rows**, ~985 MB raw CSV) | Row-by-row INSERT into an RDBMS becomes I/O-bound; a bulk COPY works but locks the table. Batch pipelines with parallel writers are the natural fit. |
-| Analytical scans, not point queries | Every business question scans **≥ 8.4 M rows** per run | An RDBMS optimises for OLTP index seeks; a scan over 8 M rows is a full-table scan. It works, but scaling up to 40 M/year or 4 B lifetime makes the same scan proportionally slower. |
+| Bulk write, monthly | ~3.7 million rows / month (Jan+Feb+Mar 2026 = **11.08 M rows**, ~1.17 GB raw CSV) | Row-by-row INSERT into an RDBMS becomes I/O-bound; a bulk COPY works but locks the table. Batch pipelines with parallel writers are the natural fit. |
+| Analytical scans, not point queries | Every business question scans **≥ ~10 M cleaned rows** per run | An RDBMS optimises for OLTP index seeks; a scan over 10 M rows is a full-table scan. It works, but scaling up to ~44 M/year or 4 B lifetime makes the same scan proportionally slower. |
 | Aggregation with high-cardinality grouping | Q3 groups by (PU zone × DO zone × hour) = up to 265 × 265 × 24 ≈ 1.7 M distinct groups | Group cardinality is what saturates single-node sort buffers. Distributed shuffle across a cluster fans this out to N workers. |
 | Denormalised, wide schema | Fact row has 19 fields; joining to zone dim = 19+4 fields | RDBMS row storage becomes disk-inefficient. Columnar stores (Parquet, ORC) skip unused columns and compress each column independently — often 5–10× less I/O. |
 | Multi-tenant analytical workload | The same dataset feeds five different business questions | An RDBMS materialises full-scan results into memory; each query pays the full cost. Hive + HDFS lets multiple concurrent queries share the same underlying blocks, and each query runs on the same distributed workers. |
@@ -61,10 +61,10 @@ If the volume were 100,000 rows we would use Postgres, run a few `GROUP BY` quer
 
 | V | Manifestation in this project | Concrete evidence |
 |---|---|---|
-| **Volume** | 3 months = **9.55 M records / 985 MB CSV / ~150 MB Parquet**. Extrapolated: 1 year ≈ 40 M rows / 4 GB CSV; 5 years ≈ 200 M rows / 20 GB. Real production archive: billions. | `hdfs dfs -du -h /raw` shows 984.9 MB across three monthly partitions. |
+| **Volume** | 3 months = **11.08 M records / ~1.17 GB CSV / ~190 MB Parquet**. Extrapolated: 1 year ≈ 44 M rows / ~4.7 GB CSV; 5 years ≈ 220 M rows / ~24 GB. Real production archive: billions. | `hdfs dfs -du -h /raw` shows ~1.17 GB across three monthly partitions (2026 ingest). |
 | **Velocity** | Data arrives as **monthly batches** in the public TLC portal. Our HDFS layout mirrors this — `/raw/trips/year=YYYY/month=MM/…`. In production, sub-hourly Kafka topics carry live meter events; our batch pipeline is a simplification of that pattern. | Partitioned HDFS directory tree; each new month adds a new directory without re-processing prior data. |
 | **Variety** | Two structured sources with different granularities: trip **fact** (row-per-event, 19 columns) + zone **dimension** (row-per-lookup-key, 4 columns) + (optional) weather JSON. All joined in Pig / Hive. | Distinct HDFS paths for `/raw/trips/…` and `/raw/zone_lookup/…`; Pig `JOIN … BY` produces enriched `/clean/trips_enriched/`. |
-| **Veracity** | Real messy data. Pig ETL dropped **11.25 %** of raw rows (9.55 M → 8.48 M) for data-quality violations: passenger_count = 0, zero-distance / >100 mile trips, negative fares, missing zone IDs. | `_counts/raw` = 9,554,778; `_counts/clean` = 8,479,421. Recorded in `03-run-pig-etl.md`. |
+| **Veracity** | Real messy data. Pig ETL drops **~10–12 %** of raw rows for data-quality violations: passenger_count = 0, zero-distance / >100 mile trips, negative fares, missing zone IDs. | After re-ingesting 2026 data, read `_counts/raw` and `_counts/clean` on HDFS (Phase 3). |
 | **Value** | Five distinct business questions, each producing a queryable Hive table + interactive Streamlit visualization. Top-20 hotspots align with real NYC geography (Midtown Center zones 161/162 at 5–6 PM rush, JFK at 4 PM afternoon flights). | Streamlit dashboard at `:8501` renders all five as interactive charts. |
 
 *(The extended-Vs schools of thought add **Variability** — same "trip" concept means different things across TLC/Uber/for-hire — and **Visualization** — the dashboard turns raw counts into decision-ready plots. Both are demonstrated in our pipeline.)*
@@ -92,9 +92,9 @@ If the volume were 100,000 rows we would use Postgres, run a few `GROUP BY` quer
 | Licence | Public domain (NYC Open Data) |
 | Zone lookup | `https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv` |
 
-We selected **Yellow Taxi 2024 Jan / Feb / Mar** as the target window because:
+We selected **Yellow Taxi 2026 Jan / Feb / Mar** as the target window because:
 
-1. It fits comfortably inside the 4 GB RAM constraint of our pseudo-cluster while staying credibly "big" (985 MB).
+1. It fits inside the 4 GB RAM constraint of our pseudo-cluster while staying credibly "big" (~1.17 GB CSV on HDFS).
 2. It's post-COVID normal, so counts reflect a mature ride-hail-dominated market.
 3. Three months lets us show month-over-month trends without hitting disk pressure.
 
@@ -102,15 +102,15 @@ We selected **Yellow Taxi 2024 Jan / Feb / Mar** as the target window because:
 
 | File | Rows | Parquet size | CSV size (after conversion) |
 |---|---:|---:|---:|
-| `yellow_tripdata_2024-01.parquet` | 2,964,624 | 48 MB | 307 MB |
-| `yellow_tripdata_2024-02.parquet` | ~2,900,000 | 48 MB | 305 MB |
-| `yellow_tripdata_2024-03.parquet` | ~3,690,154 | 55 MB | 373 MB |
-| **Total (raw)** | **9,554,778** | **~150 MB** | **~985 MB** |
-| After Pig cleansing | 8,479,421 | — | ~700 MB (2 part files) |
-| After Pig enrichment | 8,479,421 | — | 1,054 MB across 2 part files |
+| `yellow_tripdata_2026-01.parquet` | 3,724,889 | 61 MB | ~392 MB |
+| `yellow_tripdata_2026-02.parquet` | 3,399,866 | 56 MB | ~358 MB |
+| `yellow_tripdata_2026-03.parquet` | 3,952,451 | 65 MB | ~416 MB |
+| **Total (raw)** | **11,077,206** | **~190 MB** | **~1.17 GB** |
+| After Pig cleansing | (re-run Phase 3) | — | ~800 MB (2 part files, est.) |
+| After Pig enrichment | (re-run Phase 3) | — | ~1.2 GB across 2 part files (est.) |
 | Zone lookup | 265 | 12 KB | 12 KB |
 
-*Verified 27 Sep 2026 by direct download and row-count query.*
+*Verified 3 Oct 2026 by direct download and row-count query. Parquet includes `cbd_congestion_fee`; ingest strips it to 19 CSV columns.*
 
 ### 3.3 Data characteristics
 
@@ -371,9 +371,9 @@ Power BI / Tableau are stronger for corporate BI, but the assignment specifies S
 
 | Layer | Metric | Value |
 |---|---|---:|
-| Storage | Raw HDFS data | 985 MB |
-| Storage | Cleaned + enriched | 1.05 GB |
-| Processing | Rows through Pig | 9.55 M → 8.48 M |
+| Storage | Raw HDFS data | ~1.17 GB |
+| Storage | Cleaned + enriched | ~1.2 GB (after Phase 3 re-run) |
+| Processing | Rows through Pig | 11.08 M raw → see `_counts/clean` |
 | Processing | Streaming MR wall time | 35 s |
 | Processing | Total Hive wall time (5 queries) | ~7 min |
 | Serving | HBase `zone_lookup` rows | 265 |
@@ -384,10 +384,10 @@ Power BI / Tableau are stronger for corporate BI, but the assignment specifies S
 
 | KPI | Value |
 |---|---:|
-| Total trips analyzed (Jan–Mar 2024) | **8,479,421** |
-| Total taxi revenue | **$235.12 M** |
-| Average fare per trip | **$33.70** |
-| Average tip % | **4.7 %** |
+| Total trips analyzed (Jan–Mar 2026) | **Re-run Hive + dashboard export** |
+| Total taxi revenue | **From dashboard KPIs after 2026 pipeline** |
+| Average fare per trip | **From dashboard KPIs after 2026 pipeline** |
+| Average tip % | **From dashboard KPIs after 2026 pipeline** |
 
 ### Headline analytical findings
 

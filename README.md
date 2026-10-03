@@ -1,7 +1,7 @@
 # BITS CC ZG522 · Big Data Systems · Assignment 1
 
 **Team domain:** Transportation
-**Dataset:** NYC TLC Yellow Taxi Trip Records (Jan–Mar 2024, ~9M records, ~920 MB CSV)
+**Dataset:** NYC TLC Yellow Taxi Trip Records (Jan–Mar 2026, ~11.1M records, ~1.17 GB CSV)
 **Stack:** HDFS · Pig · Hive · HBase · Hadoop Streaming (Python) · Streamlit
 
 ## Start here
@@ -58,7 +58,7 @@ Assignment/
     ├── dataset-schema.md           ← 19-column data dictionary
     ├── taxi_zone_lookup.csv        ← 265 NYC taxi zones (downloaded 27 Sep 2026)
     └── sample-data/
-        └── yellow_tripdata_2024-01_sample.csv  (first 1000 rows, for eyeballing)
+        └── yellow_tripdata_2026-01_sample.csv  (first 1000 rows, for eyeballing)
 ```
 
 ## Quick usage

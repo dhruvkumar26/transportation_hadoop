@@ -32,7 +32,7 @@ Store all under `screenshots/phase-N/<memberID>/` in the repo. Since every membe
 | 9 | `02-hdfs-head.png` | `hdfs dfs -cat` first 3 rows of Jan CSV |
 | 10 | `02-hdfs-fsck.png` | fsck output: HEALTHY, blocks per file, avg block size |
 | 11 | `02-namenode-overview.png` | NameNode UI overview after data load |
-| 12 | `02-namenode-browse.png` | Utilities → Browse `/raw/trips/year=2024/month=01/` |
+| 12 | `02-namenode-browse.png` | Utilities → Browse `/raw/trips/year=2026/month=01/` |
 | 13 | `02-namenode-datanodes.png` | Datanodes tab with block distribution |
 
 ## Phase 3 – Pig ETL

@@ -67,9 +67,9 @@ flowchart LR
 
 | Arrow | What travels | Volume |
 |---|---|---|
-| TLC → curl | Parquet files (Jan/Feb/Mar 2024) | ~150 MB |
-| curl → HDFS | Headerless CSV | ~920 MB across 3 partitions |
-| HDFS raw → Pig | Full trip records | 9.3 M rows |
+| TLC → curl | Parquet files (Jan/Feb/Mar 2026) | ~190 MB |
+| curl → HDFS | Headerless CSV (19 cols) | ~1.17 GB across 3 partitions |
+| HDFS raw → Pig | Full trip records | 11.1 M rows |
 | Pig → HDFS clean | Filtered records | ~8.4 M rows (~700 MB) |
 | Pig → HDFS enriched | Cleaned + zone-joined + time-derived | ~1 GB |
 | HDFS enriched → Hive | External-table read (no copy) | 8.4 M rows visible as `fact_trips` |

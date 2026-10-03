@@ -8,16 +8,18 @@
 
 ## Volume for this assignment
 
-| Month | Rows | Parquet | CSV (uncompressed) |
+| Month | Rows | Parquet | CSV (uncompressed, 19 cols) |
 |---|---:|---:|---:|
-| 2024-01 | 2,964,624 | ~48 MB | ~307 MB |
-| 2024-02 | ~2.9 M (est) | ~48 MB | ~305 MB |
-| 2024-03 | ~3.4 M (est) | ~55 MB | ~350 MB |
-| **Total** | **~9.3 M** | **~150 MB** | **~960 MB** |
+| 2026-01 | 3,724,889 | ~61 MB | ~392 MB |
+| 2026-02 | 3,399,866 | ~56 MB | ~358 MB |
+| 2026-03 | 3,952,451 | ~65 MB | ~416 MB |
+| **Total** | **11,077,206** | **~190 MB** | **~1.17 GB** |
 
-Confirmed by downloading and expanding Jan 2024 file (27 Sep 2026). Feb/Mar sizes estimated from typical monthly variance.
+Confirmed by downloading all three 2026 files (3 Oct 2026). CSV sizes estimated from Jan conversion ratio; re-run `download_and_ingest.sh` on your VM for exact `hdfs dfs -du` numbers.
 
-## Trip records – 19 columns
+## Trip records – 19 columns (ingest layout)
+
+Our HDFS CSV files use these 19 columns (headerless). TLC may ship additional Parquet fields in newer years; see ingest note below.
 
 | # | Column | Type | Notes |
 |---:|---|---|---|
@@ -40,6 +42,12 @@ Confirmed by downloading and expanding Jan 2024 file (27 Sep 2026). Feb/Mar size
 | 17 | `total_amount` | double | Grand total (excludes cash tip) |
 | 18 | `congestion_surcharge` | double | $2.50 for trips inside Manhattan below 96th St |
 | 19 | `Airport_fee` | double | $1.75 for pickups at LGA/JFK |
+
+### TLC-only field (not in our CSV)
+
+| Column | Notes |
+|---|---|
+| `cbd_congestion_fee` | Present in 2026+ Yellow Parquet; omitted by `parquet_to_csv.py` so Pig/Hive/MapReduce scripts stay on the 19-column contract. |
 
 ## Zone lookup – 265 zones × 4 columns
 

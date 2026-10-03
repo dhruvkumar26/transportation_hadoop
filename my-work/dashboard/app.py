@@ -27,7 +27,7 @@ st.set_page_config(
 )
 
 st.title("🚕 NYC Yellow Taxi – Big Data Analytics")
-st.caption("BITS ZG522 · Big Data Systems · Assignment 1 · 3 months (Jan–Mar 2024) · ~9M trips")
+st.caption("BITS ZG522 · Big Data Systems · Assignment 1 · 3 months (Jan–Mar 2026) · ~11M trips")
 
 # ---------------------------------------------------------------------------
 # Data loading (Hive exports have no header row)

@@ -14,14 +14,14 @@ set -euo pipefail
 
 BASE_URL="https://d37ci6vzurychx.cloudfront.net"
 STAGING="/home/hdoop/staging"
-MONTHS=("2024-01" "2024-02" "2024-03")
+MONTHS=("2026-01" "2026-02" "2026-03")
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 mkdir -p "$STAGING"
 
 echo "========================================================================"
 echo " Phase 2 – Download + HDFS Ingestion"
-echo " Target : 3 months of NYC Yellow Taxi trip data (Jan/Feb/Mar 2024)"
+echo " Target : 3 months of NYC Yellow Taxi trip data (Jan/Feb/Mar 2026)"
 echo " Staging: $STAGING"
 echo "========================================================================"
 
@@ -55,7 +55,7 @@ else
 fi
 
 # ----------------------------------------------------------------------------
-# 3. Monthly parquet files (~48 MB each, x3 = ~145 MB)
+# 3. Monthly parquet files (~56–64 MB each, x3 = ~190 MB)
 # ----------------------------------------------------------------------------
 for M in "${MONTHS[@]}"; do
   F="yellow_tripdata_${M}.parquet"
@@ -68,7 +68,7 @@ for M in "${MONTHS[@]}"; do
 done
 
 # ----------------------------------------------------------------------------
-# 4. Convert parquet -> headerless CSV (~305 MB each, x3 = ~920 MB)
+# 4. Convert parquet -> headerless CSV (19 cols; ~360–415 MB each, x3 = ~1.1 GB)
 # ----------------------------------------------------------------------------
 for M in "${MONTHS[@]}"; do
   P="$STAGING/yellow_tripdata_${M}.parquet"
@@ -84,9 +84,9 @@ done
 # ----------------------------------------------------------------------------
 # 5. HDFS layout
 #     /raw/zone_lookup/taxi_zone_lookup.csv
-#     /raw/trips/year=2024/month=01/yellow_tripdata_2024-01.csv
-#     /raw/trips/year=2024/month=02/yellow_tripdata_2024-02.csv
-#     /raw/trips/year=2024/month=03/yellow_tripdata_2024-03.csv
+#     /raw/trips/year=2026/month=01/yellow_tripdata_2026-01.csv
+#     /raw/trips/year=2026/month=02/yellow_tripdata_2026-02.csv
+#     /raw/trips/year=2026/month=03/yellow_tripdata_2026-03.csv
 # ----------------------------------------------------------------------------
 echo ""
 echo "→ Uploading to HDFS..."

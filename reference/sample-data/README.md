@@ -1,9 +1,9 @@
-# Sample Data
+# Sample trip data
 
-Small (1000-row) sample of NYC Yellow Taxi Jan 2024 data.
+Small (1000-row) sample of NYC Yellow Taxi Jan 2026 data.
 
-**File:** `yellow_tripdata_2024-01_sample.csv`
-**Downloaded:** 27 Sep 2026
-**Source:** https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-01.parquet (first 1000 rows converted to CSV)
+**File:** `yellow_tripdata_2026-01_sample.csv`
 
-**Use:** eyeballing schema, testing ETL scripts against a manageable input, quoting sample rows in the report. NOT for actual analytics — that runs on the full 9 M rows in the VM's HDFS.
+**Source:** https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2026-01.parquet (first 1000 rows, 19 assignment columns, headerless — same layout as HDFS `/raw`)
+
+**Note:** TLC Parquet files from 2026 onward include an extra `cbd_congestion_fee` field. `parquet_to_csv.py` drops it so Pig / MapReduce keep the original 19-field CSV schema.

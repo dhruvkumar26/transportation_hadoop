@@ -9,7 +9,7 @@
 -- HOW TO RUN (inside VM as hdoop):
 --   pig -x mapreduce -f 01_clean_trips.pig
 --
--- INPUT   : /raw/trips/year=2024/month={01,02,03}/yellow_tripdata_*.csv
+-- INPUT   : /raw/trips/year=2026/month={01,02,03}/yellow_tripdata_*.csv
 -- OUTPUT  : /clean/trips/     (partition-flat comma-separated files)
 --
 -- Filters applied (documented for the report):

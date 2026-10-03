@@ -10,7 +10,7 @@ Two Pig Latin scripts, run one after the other:
 
 | Script | Role | HDFS output |
 |---|---|---|
-| `01_clean_trips.pig` | Read 9M raw CSV rows, drop bad data, project to same 19 cols | `/clean/trips/` |
+| `01_clean_trips.pig` | Read ~11M raw CSV rows, drop bad data, project to same 19 cols | `/clean/trips/` |
 | `02_enrich_trips.pig` | Add derived columns (hour/day/duration/tip%) + JOIN zone lookup for pickup borough/zone | `/clean/trips_enriched/` |
 
 Both scripts compile to MapReduce jobs. **You'll see them appear in the YARN UI at `http://localhost:8088` — screenshot them for evidence.**
@@ -83,7 +83,7 @@ hdfs dfs -cat /clean/_counts/clean/part-*   ; echo
 
 Expected:
 - `/clean/trips` has 2–3 part files, total ~700 MB.
-- `_counts/raw` shows total raw rows (~9.3 M).
+- `_counts/raw` shows total raw rows (~11.1 M for Jan–Mar 2026).
 - `_counts/clean` shows survivors (typically ~90 % → ~8.4 M).
 
 Compute drop rate for the report:
@@ -116,8 +116,8 @@ hdfs dfs -cat /clean/trips_enriched/part-* | head -3
 Expected head row (18 comma-separated fields):
 
 ```
-2,2024-01-01 00:57:55,0,1,1,2024,19.8,1.0,1.72,186,Manhattan,Penn Station/Madison Sq West,79,2,17.7,0.0,22.70,0.0
-1,2024-01-01 00:03:00,0,1,1,2024,6.6,1.0,1.80,140,Manhattan,Lenox Hill East,236,1,10.0,3.75,18.75,37.5
+2,2026-01-01 00:54:04.000000,16,1,1,2026,5.55,1,0.97,239,Manhattan,Upper East Side South,238,1,7.2,3.66,15.86,50.83
+1,2026-01-01 00:34:04.000000,0,1,1,2026,5.72,0,0.9,163,Manhattan,Union Sq,162,2,7.9,0.0,13.65,0.0
 ...
 ```
 
