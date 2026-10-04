@@ -1,0 +1,103 @@
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/hdoop/apache-hive-3.1.3-bin/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/hdoop/hadoop-3.2.1/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = 87a76e74-573c-414a-9aef-64df64309f37
+
+Logging initialized using configuration in jar:file:/home/hdoop/apache-hive-3.1.3-bin/lib/hive-common-3.1.3.jar!/hive-log4j2.properties Async: true
+2026-10-04 08:07:11,502 INFO  [87a76e74-573c-414a-9aef-64df64309f37 main] DataNucleus.Persistence: Property datanucleus.cache.level2 unknown - will be ignored
+2026-10-04 08:07:12,070 WARN  [87a76e74-573c-414a-9aef-64df64309f37 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:07:12,070 WARN  [87a76e74-573c-414a-9aef-64df64309f37 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:07:12,070 WARN  [87a76e74-573c-414a-9aef-64df64309f37 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:07:12,070 WARN  [87a76e74-573c-414a-9aef-64df64309f37 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:07:12,070 WARN  [87a76e74-573c-414a-9aef-64df64309f37 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:07:12,070 WARN  [87a76e74-573c-414a-9aef-64df64309f37 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:07:13,042 WARN  [87a76e74-573c-414a-9aef-64df64309f37 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:07:13,043 WARN  [87a76e74-573c-414a-9aef-64df64309f37 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:07:13,043 WARN  [87a76e74-573c-414a-9aef-64df64309f37 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:07:13,043 WARN  [87a76e74-573c-414a-9aef-64df64309f37 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:07:13,043 WARN  [87a76e74-573c-414a-9aef-64df64309f37 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:07:13,043 WARN  [87a76e74-573c-414a-9aef-64df64309f37 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+Hive Session ID = 34eed68e-ccbe-41e1-b8f5-da67076aabda
+OK
+Time taken: 0.426 seconds
+OK
+Time taken: 0.01 seconds
+OK
+Time taken: 0.335 seconds
+OK
+Time taken: 0.115 seconds
+OK
+Time taken: 0.036 seconds
+OK
+Time taken: 0.026 seconds
+OK
+Time taken: 0.061 seconds
+Query ID = hdoop_20261004080715_d728ffd9-087c-46d7-8190-949922dbe30d
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks is set to 0 since there's no reduce operator
+2026-10-04 08:07:16,495 INFO  [87a76e74-573c-414a-9aef-64df64309f37 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:07:16,667 INFO  [87a76e74-573c-414a-9aef-64df64309f37 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0032, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0032/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0032
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0
+2026-10-04 08:07:21,098 Stage-1 map = 0%,  reduce = 0%
+2026-10-04 08:07:25,225 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.17 sec
+MapReduce Total cumulative CPU time: 1 seconds 170 msec
+Ended Job = job_1791096253713_0032
+Stage-4 is selected by condition resolver.
+Stage-3 is filtered out by condition resolver.
+Stage-5 is filtered out by condition resolver.
+Moving data to directory hdfs://127.0.0.1:9000/user/hive/warehouse/taxi_analytics.db/.hive-staging_hive_2026-10-04_08-07-15_378_2690971106290504453-1/-ext-10002
+Moving data to directory hdfs://127.0.0.1:9000/user/hive/warehouse/taxi_analytics.db/dim_zone
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1   Cumulative CPU: 1.17 sec   HDFS Read: 18570 HDFS Write: 3252 SUCCESS
+Total MapReduce CPU Time Spent: 1 seconds 170 msec
+OK
+Time taken: 11.202 seconds
+Query ID = hdoop_20261004080726_86adc818-1b57-474f-874f-79ec38694da2
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+2026-10-04 08:07:26,763 INFO  [87a76e74-573c-414a-9aef-64df64309f37 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:07:26,773 INFO  [87a76e74-573c-414a-9aef-64df64309f37 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0033, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0033/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0033
+Hadoop job information for Stage-1: number of mappers: 4; number of reducers: 1
+2026-10-04 08:07:34,510 Stage-1 map = 0%,  reduce = 0%
+2026-10-04 08:07:40,882 Stage-1 map = 75%,  reduce = 0%, Cumulative CPU 7.2 sec
+2026-10-04 08:07:46,171 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 8.45 sec
+2026-10-04 08:07:47,195 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 9.42 sec
+MapReduce Total cumulative CPU time: 9 seconds 420 msec
+Ended Job = job_1791096253713_0033
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 4  Reduce: 1   Cumulative CPU: 9.42 sec   HDFS Read: 1017999576 HDFS Write: 107 SUCCESS
+Total MapReduce CPU Time Spent: 9 seconds 420 msec
+OK
+7799600
+Time taken: 22.745 seconds, Fetched: 1 row(s)
+OK
+265
+Time taken: 0.08 seconds, Fetched: 1 row(s)
+OK
+1	EWR	Newark Airport	EWR
+2	Queens	Jamaica Bay	Boro Zone
+3	Bronx	Allerton/Pelham Gardens	Boro Zone
+4	Manhattan	Alphabet City	Yellow Zone
+5	Staten Island	Arden Heights	Boro Zone
+Time taken: 0.083 seconds, Fetched: 5 row(s)
+OK
+2	2026-03-27 00:34:29.000000	Jamaica Bay	61.5	0.0	63.5
+2	2026-03-28 04:49:02.000000	Jamaica Bay	3.0	0.0	5.5
+2	2026-02-19 10:40:19.000000	Jamaica Bay	43.6	0.0	45.1
+2	2026-02-17 21:20:47.000000	Jamaica Bay	70.0	14.8	88.8
+2	2026-02-24 19:57:06.000000	Jamaica Bay	17.7	0.0	21.7
+Time taken: 0.065 seconds, Fetched: 5 row(s)

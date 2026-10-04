@@ -1,0 +1,139 @@
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/hdoop/apache-hive-3.1.3-bin/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/hdoop/hadoop-3.2.1/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = 4223d481-cfe8-417d-9708-b285c5f1455e
+
+Logging initialized using configuration in jar:file:/home/hdoop/apache-hive-3.1.3-bin/lib/hive-common-3.1.3.jar!/hive-log4j2.properties Async: true
+2026-10-04 08:14:16,362 INFO  [4223d481-cfe8-417d-9708-b285c5f1455e main] DataNucleus.Persistence: Property datanucleus.cache.level2 unknown - will be ignored
+2026-10-04 08:14:16,912 WARN  [4223d481-cfe8-417d-9708-b285c5f1455e main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:14:16,913 WARN  [4223d481-cfe8-417d-9708-b285c5f1455e main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:14:16,913 WARN  [4223d481-cfe8-417d-9708-b285c5f1455e main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:14:16,913 WARN  [4223d481-cfe8-417d-9708-b285c5f1455e main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:14:16,913 WARN  [4223d481-cfe8-417d-9708-b285c5f1455e main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:14:16,913 WARN  [4223d481-cfe8-417d-9708-b285c5f1455e main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:14:17,953 WARN  [4223d481-cfe8-417d-9708-b285c5f1455e main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:14:17,953 WARN  [4223d481-cfe8-417d-9708-b285c5f1455e main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:14:17,953 WARN  [4223d481-cfe8-417d-9708-b285c5f1455e main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:14:17,953 WARN  [4223d481-cfe8-417d-9708-b285c5f1455e main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:14:17,953 WARN  [4223d481-cfe8-417d-9708-b285c5f1455e main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:14:17,953 WARN  [4223d481-cfe8-417d-9708-b285c5f1455e main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+Hive Session ID = ed8bc59c-e273-4097-8595-dbafc862e4d7
+OK
+Time taken: 0.434 seconds
+Query ID = hdoop_20261004081419_ddbc90cd-437d-4c88-828c-84063542e94b
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks is set to 0 since there's no reduce operator
+2026-10-04 08:14:21,042 INFO  [4223d481-cfe8-417d-9708-b285c5f1455e main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:14:21,235 INFO  [4223d481-cfe8-417d-9708-b285c5f1455e main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0044, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0044/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0044
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0
+2026-10-04 08:14:25,761 Stage-1 map = 0%,  reduce = 0%
+2026-10-04 08:14:29,894 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 0.96 sec
+MapReduce Total cumulative CPU time: 960 msec
+Ended Job = job_1791096253713_0044
+Stage-3 is selected by condition resolver.
+Stage-2 is filtered out by condition resolver.
+Stage-4 is filtered out by condition resolver.
+Moving data to directory hdfs://127.0.0.1:9000/results/hive/q1_hotspots/.hive-staging_hive_2026-10-04_08-14-19_806_1298155703163094296-1/-ext-10000
+Moving data to directory /results/hive/q1_hotspots
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1   Cumulative CPU: 0.96 sec   HDFS Read: 37961 HDFS Write: 174806 SUCCESS
+Total MapReduce CPU Time Spent: 960 msec
+OK
+Time taken: 11.239 seconds
+Query ID = hdoop_20261004081431_83a15562-f4d8-4a59-bbd9-f6b63f19b01f
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks is set to 0 since there's no reduce operator
+2026-10-04 08:14:31,578 INFO  [4223d481-cfe8-417d-9708-b285c5f1455e main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:14:31,587 INFO  [4223d481-cfe8-417d-9708-b285c5f1455e main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0045, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0045/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0045
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0
+2026-10-04 08:14:39,472 Stage-1 map = 0%,  reduce = 0%
+2026-10-04 08:14:42,522 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 0.81 sec
+MapReduce Total cumulative CPU time: 810 msec
+Ended Job = job_1791096253713_0045
+Stage-3 is selected by condition resolver.
+Stage-2 is filtered out by condition resolver.
+Stage-4 is filtered out by condition resolver.
+Moving data to directory hdfs://127.0.0.1:9000/results/hive/q2_revenue_by_borough/.hive-staging_hive_2026-10-04_08-14-31_050_3947379805221643192-1/-ext-10000
+Moving data to directory /results/hive/q2_revenue_by_borough
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1   Cumulative CPU: 0.81 sec   HDFS Read: 8173 HDFS Write: 1203 SUCCESS
+Total MapReduce CPU Time Spent: 810 msec
+OK
+Time taken: 12.526 seconds
+Query ID = hdoop_20261004081443_7e144cce-c306-4b4d-ae21-659f38c2290f
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks is set to 0 since there's no reduce operator
+2026-10-04 08:14:43,677 INFO  [4223d481-cfe8-417d-9708-b285c5f1455e main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:14:43,688 INFO  [4223d481-cfe8-417d-9708-b285c5f1455e main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0046, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0046/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0046
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0
+2026-10-04 08:14:51,952 Stage-1 map = 0%,  reduce = 0%
+2026-10-04 08:14:55,008 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 0.82 sec
+MapReduce Total cumulative CPU time: 820 msec
+Ended Job = job_1791096253713_0046
+Stage-3 is selected by condition resolver.
+Stage-2 is filtered out by condition resolver.
+Stage-4 is filtered out by condition resolver.
+Moving data to directory hdfs://127.0.0.1:9000/results/hive/q3_congestion/.hive-staging_hive_2026-10-04_08-14-43_579_1139117627139346522-1/-ext-10000
+Moving data to directory /results/hive/q3_congestion
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1   Cumulative CPU: 0.82 sec   HDFS Read: 18071 HDFS Write: 15652 SUCCESS
+Total MapReduce CPU Time Spent: 820 msec
+OK
+Time taken: 12.48 seconds
+Query ID = hdoop_20261004081456_540f9376-d009-4328-b2bd-af781e733291
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks is set to 0 since there's no reduce operator
+2026-10-04 08:14:56,169 INFO  [4223d481-cfe8-417d-9708-b285c5f1455e main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:14:56,178 INFO  [4223d481-cfe8-417d-9708-b285c5f1455e main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0047, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0047/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0047
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0
+2026-10-04 08:15:05,072 Stage-1 map = 0%,  reduce = 0%
+2026-10-04 08:15:08,122 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 0.95 sec
+MapReduce Total cumulative CPU time: 950 msec
+Ended Job = job_1791096253713_0047
+Stage-3 is selected by condition resolver.
+Stage-2 is filtered out by condition resolver.
+Stage-4 is filtered out by condition resolver.
+Moving data to directory hdfs://127.0.0.1:9000/results/hive/q4_airports/.hive-staging_hive_2026-10-04_08-14-56_062_8271801895911026622-1/-ext-10000
+Moving data to directory /results/hive/q4_airports
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1   Cumulative CPU: 0.95 sec   HDFS Read: 28124 HDFS Write: 29569 SUCCESS
+Total MapReduce CPU Time Spent: 950 msec
+OK
+Time taken: 14.126 seconds
+Query ID = hdoop_20261004081510_0433b752-fde0-41f7-b8b5-8238f41a17da
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks is set to 0 since there's no reduce operator
+2026-10-04 08:15:10,298 INFO  [4223d481-cfe8-417d-9708-b285c5f1455e main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:15:10,305 INFO  [4223d481-cfe8-417d-9708-b285c5f1455e main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0048, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0048/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0048
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0
+2026-10-04 08:15:18,188 Stage-1 map = 0%,  reduce = 0%
+2026-10-04 08:15:22,258 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 0.93 sec
+MapReduce Total cumulative CPU time: 930 msec
+Ended Job = job_1791096253713_0048
+Stage-3 is selected by condition resolver.
+Stage-2 is filtered out by condition resolver.
+Stage-4 is filtered out by condition resolver.
+Moving data to directory hdfs://127.0.0.1:9000/results/hive/q5_payment_share/.hive-staging_hive_2026-10-04_08-15-10_193_3419136372678324878-1/-ext-10000
+Moving data to directory /results/hive/q5_payment_share
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1   Cumulative CPU: 0.93 sec   HDFS Read: 6778 HDFS Write: 242 SUCCESS
+Total MapReduce CPU Time Spent: 930 msec
+OK
+Time taken: 13.143 seconds

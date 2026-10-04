@@ -1,0 +1,84 @@
+2026-10-04 08:20:26,623 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+stty: 'standard input': Inappropriate ioctl for device
+hbase:001:0> # =============================================================================
+hbase:002:0> # create_tables.hbase
+hbase:003:0> # Assignment 1, Big Data Systems, BITS ZG522
+hbase:004:0> #
+hbase:005:0> # HBase shell script.  Creates two tables that demo NoSQL wide-column storage.
+hbase:006:0> #
+hbase:007:0> # HOW TO RUN:
+hbase:008:0> #   hbase shell create_tables.hbase
+hbase:009:0> # =============================================================================
+hbase:010:0> 
+hbase:011:0> # Drop existing tables if re-running (safe on first run — will just warn)
+hbase:012:0> disable 'zone_lookup'   rescue nil
+Took 0.6315 seconds
+hbase:013:0> drop    'zone_lookup'   rescue nil
+Took 0.1322 seconds
+hbase:014:0> disable 'trip_by_zone'  rescue nil
+Took 0.3171 seconds
+hbase:015:0> drop    'trip_by_zone'  rescue nil
+Took 0.1197 seconds
+hbase:016:0> 
+hbase:017:0> # ---------------------------------------------------------------------------
+hbase:018:0> # Table 1: zone_lookup
+hbase:019:0> #   Row key : LocationID (int, stored as string)
+hbase:020:0> #   Column families:
+hbase:021:0> #     info : borough, zone_name, service_zone
+hbase:022:0> # ---------------------------------------------------------------------------
+hbase:023:0> create 'zone_lookup', {NAME => 'info', VERSIONS => 1}
+Created table zone_lookup
+Took 2.1516 seconds
+=> Hbase::Table - zone_lookup
+hbase:024:0> 
+hbase:025:0> # ---------------------------------------------------------------------------
+hbase:026:0> # Table 2: trip_by_zone
+hbase:027:0> #   Row key : <pu_loc_id>_<hour>          (e.g. "132_18" = JFK, 6 PM)
+hbase:028:0> #   Column families:
+hbase:029:0> #     stats  : trips, avg_fare, avg_tip_pct, avg_duration_min
+hbase:030:0> #     top_do : json blob of top-5 drop-off zones
+hbase:031:0> # ---------------------------------------------------------------------------
+hbase:032:0> create 'trip_by_zone', {NAME => 'stats', VERSIONS => 1}, {NAME => 'top_do', VERSIONS => 1}
+Created table trip_by_zone
+Took 2.1242 seconds
+=> Hbase::Table - trip_by_zone
+hbase:033:0> 
+hbase:034:0> # Show what we made
+hbase:035:0> list
+TABLE
+trip_by_zone
+zone_lookup
+2 row(s)
+Took 0.0127 seconds
+=> ["trip_by_zone", "zone_lookup"]
+hbase:036:0> 
+hbase:037:0> # Describe both
+hbase:038:0> describe 'zone_lookup'
+Table zone_lookup is ENABLED
+zone_lookup
+COLUMN FAMILIES DESCRIPTION
+{NAME => 'info', BLOOMFILTER => 'ROW', IN_MEMORY => 'false', VERSIONS => '1', KEEP_DELETED_CELLS => 'FALSE', DATA_BLOCK_ENCODING => 'NONE', COMPRESSION => 'NONE', TTL => 'FOREVER', MIN_VERSIONS => '0', BLOCKCACHE => 'true', BLOCKSIZE => '65536', REPLICATION_SCOPE => '0'}
+
+1 row(s)
+Quota is disabled
+Took 0.0225 seconds
+hbase:039:0> describe 'trip_by_zone'
+Table trip_by_zone is ENABLED
+trip_by_zone
+COLUMN FAMILIES DESCRIPTION
+{NAME => 'stats', BLOOMFILTER => 'ROW', IN_MEMORY => 'false', VERSIONS => '1', KEEP_DELETED_CELLS => 'FALSE', DATA_BLOCK_ENCODING => 'NONE', COMPRESSION => 'NONE', TTL => 'FOREVER', MIN_VERSIONS => '0', BLOCKCACHE => 'true', BLOCKSIZE => '65536', REPLICATION_SCOPE => '0'}
+
+{NAME => 'top_do', BLOOMFILTER => 'ROW', IN_MEMORY => 'false', VERSIONS => '1', KEEP_DELETED_CELLS => 'FALSE', DATA_BLOCK_ENCODING => 'NONE', COMPRESSION => 'NONE', TTL => 'FOREVER', MIN_VERSIONS => '0', BLOCKCACHE => 'true', BLOCKSIZE => '65536', REPLICATION_SCOPE => '0'}
+
+2 row(s)
+Quota is disabled
+Took 0.0072 seconds
+hbase:040:0> 
+HBase Shell
+Use "help" to get list of supported commands.
+Use "exit" to quit this interactive shell.
+For Reference, please visit: http://hbase.apache.org/2.0/book.html#shell
+Version 2.4.18, ra1767f4d76859c0068720a6c1e5cb78282ebfe1e, Tue May 21 08:45:43 UTC 2024
+Took 0.0006 seconds
+stty: 'standard input': Inappropriate ioctl for device
+hbase:001:0> exit

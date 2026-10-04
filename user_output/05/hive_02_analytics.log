@@ -1,0 +1,415 @@
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/hdoop/apache-hive-3.1.3-bin/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/hdoop/hadoop-3.2.1/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = 81b200ed-6a01-45c3-974c-549ad730c306
+
+Logging initialized using configuration in jar:file:/home/hdoop/apache-hive-3.1.3-bin/lib/hive-common-3.1.3.jar!/hive-log4j2.properties Async: true
+2026-10-04 08:08:14,915 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] DataNucleus.Persistence: Property datanucleus.cache.level2 unknown - will be ignored
+2026-10-04 08:08:15,481 WARN  [81b200ed-6a01-45c3-974c-549ad730c306 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:08:15,481 WARN  [81b200ed-6a01-45c3-974c-549ad730c306 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:08:15,482 WARN  [81b200ed-6a01-45c3-974c-549ad730c306 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:08:15,482 WARN  [81b200ed-6a01-45c3-974c-549ad730c306 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:08:15,482 WARN  [81b200ed-6a01-45c3-974c-549ad730c306 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:08:15,482 WARN  [81b200ed-6a01-45c3-974c-549ad730c306 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:08:16,438 WARN  [81b200ed-6a01-45c3-974c-549ad730c306 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:08:16,438 WARN  [81b200ed-6a01-45c3-974c-549ad730c306 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:08:16,438 WARN  [81b200ed-6a01-45c3-974c-549ad730c306 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:08:16,438 WARN  [81b200ed-6a01-45c3-974c-549ad730c306 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:08:16,438 WARN  [81b200ed-6a01-45c3-974c-549ad730c306 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+2026-10-04 08:08:16,438 WARN  [81b200ed-6a01-45c3-974c-549ad730c306 main] DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+Hive Session ID = 795bab78-ff9a-48a9-8ea9-c1b7d7a058f3
+OK
+Time taken: 0.421 seconds
+OK
+Time taken: 0.362 seconds
+Query ID = hdoop_20261004080818_4ef15d4b-0ee3-4dcd-9f29-dd0c96f9ec42
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 4
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+2026-10-04 08:08:19,833 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:08:20,025 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0034, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0034/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0034
+Hadoop job information for Stage-1: number of mappers: 4; number of reducers: 4
+2026-10-04 08:08:24,446 Stage-1 map = 0%,  reduce = 0%
+2026-10-04 08:08:31,722 Stage-1 map = 75%,  reduce = 0%, Cumulative CPU 9.98 sec
+2026-10-04 08:08:34,794 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 11.69 sec
+2026-10-04 08:08:36,874 Stage-1 map = 100%,  reduce = 50%, Cumulative CPU 13.76 sec
+2026-10-04 08:08:37,888 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 15.45 sec
+MapReduce Total cumulative CPU time: 15 seconds 450 msec
+Ended Job = job_1791096253713_0034
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+2026-10-04 08:08:40,467 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:08:40,481 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0035, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0035/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0035
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2026-10-04 08:08:47,835 Stage-2 map = 0%,  reduce = 0%
+2026-10-04 08:08:51,908 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 0.9 sec
+2026-10-04 08:08:56,011 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 1.96 sec
+MapReduce Total cumulative CPU time: 1 seconds 960 msec
+Ended Job = job_1791096253713_0035
+Moving data to directory hdfs://127.0.0.1:9000/user/hive/warehouse/taxi_analytics.db/q1_hotspots
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 4  Reduce: 4   Cumulative CPU: 15.45 sec   HDFS Read: 1018024800 HDFS Write: 252308 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 1.96 sec   HDFS Read: 261491 HDFS Write: 17009 SUCCESS
+Total MapReduce CPU Time Spent: 17 seconds 410 msec
+OK
+Time taken: 38.839 seconds
+OK
+18	Manhattan	Midtown Center	34733
+18	Manhattan	Upper East Side South	31878
+18	Manhattan	Upper East Side North	28224
+18	Manhattan	Midtown East	27539
+18	Queens	JFK Airport	23894
+Time taken: 0.145 seconds, Fetched: 5 row(s)
+OK
+Time taken: 0.049 seconds
+Query ID = hdoop_20261004080857_dab1f59a-5c68-4d38-b9a8-804e8b4225dd
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 4
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+2026-10-04 08:08:58,256 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:08:58,265 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0036, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0036/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0036
+Hadoop job information for Stage-1: number of mappers: 4; number of reducers: 4
+2026-10-04 08:09:05,003 Stage-1 map = 0%,  reduce = 0%
+2026-10-04 08:09:11,124 Stage-1 map = 25%,  reduce = 0%, Cumulative CPU 3.05 sec
+2026-10-04 08:09:12,149 Stage-1 map = 75%,  reduce = 0%, Cumulative CPU 9.42 sec
+2026-10-04 08:09:15,186 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 11.43 sec
+2026-10-04 08:09:17,231 Stage-1 map = 100%,  reduce = 50%, Cumulative CPU 13.86 sec
+2026-10-04 08:09:18,260 Stage-1 map = 100%,  reduce = 75%, Cumulative CPU 15.07 sec
+2026-10-04 08:09:19,274 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 16.26 sec
+MapReduce Total cumulative CPU time: 16 seconds 260 msec
+Ended Job = job_1791096253713_0036
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+2026-10-04 08:09:20,783 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:09:20,794 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0037, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0037/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0037
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2026-10-04 08:09:28,692 Stage-2 map = 0%,  reduce = 0%
+2026-10-04 08:09:31,737 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 0.65 sec
+2026-10-04 08:09:35,831 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 1.5 sec
+MapReduce Total cumulative CPU time: 1 seconds 500 msec
+Ended Job = job_1791096253713_0037
+Moving data to directory hdfs://127.0.0.1:9000/user/hive/warehouse/taxi_analytics.db/q2_revenue_by_borough
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 4  Reduce: 4   Cumulative CPU: 16.26 sec   HDFS Read: 1018050180 HDFS Write: 2181 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 1.5 sec   HDFS Read: 11740 HDFS Write: 1665 SUCCESS
+Total MapReduce CPU Time Spent: 17 seconds 760 msec
+OK
+Time taken: 39.286 seconds
+OK
+Manhattan	Card	5996818	1.4647820673E8	15.33	26.18
+Queens	Card	611861	4.765344973E7	55.7	20.21
+Manhattan	Cash	745754	1.495282101E7	14.71	0.0
+Queens	Cash	136864	7205355.95	45.04	0.0
+Brooklyn	Card	146612	4994073.75	31.85	3.43
+Bronx	Card	54812	2220193.37	37.99	0.55
+Manhattan	Dispute	48410	1000005.05	15.09	0.0
+Queens	Dispute	13433	790325.82	50.3	0.01
+Manhattan	NoCharge	19577	378288.07	13.87	0.01
+Unknown	Card	9423	304434.3	21.4	25.27
+Time taken: 0.07 seconds, Fetched: 10 row(s)
+OK
+Time taken: 0.035 seconds
+Query ID = hdoop_20261004080937_9cae0b93-e29c-48ac-83b1-e9e6a24417c6
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 4
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+2026-10-04 08:09:38,055 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:09:38,065 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0038, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0038/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0038
+Hadoop job information for Stage-1: number of mappers: 4; number of reducers: 4
+2026-10-04 08:09:45,183 Stage-1 map = 0%,  reduce = 0%
+2026-10-04 08:09:52,584 Stage-1 map = 50%,  reduce = 0%, Cumulative CPU 8.4 sec
+2026-10-04 08:09:53,596 Stage-1 map = 75%,  reduce = 0%, Cumulative CPU 13.26 sec
+2026-10-04 08:09:56,650 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 15.99 sec
+2026-10-04 08:09:57,669 Stage-1 map = 100%,  reduce = 25%, Cumulative CPU 17.95 sec
+2026-10-04 08:09:58,680 Stage-1 map = 100%,  reduce = 50%, Cumulative CPU 19.91 sec
+2026-10-04 08:10:00,708 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 23.98 sec
+MapReduce Total cumulative CPU time: 23 seconds 980 msec
+Ended Job = job_1791096253713_0038
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+2026-10-04 08:10:02,204 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:10:02,214 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0039, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0039/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0039
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2026-10-04 08:10:10,509 Stage-2 map = 0%,  reduce = 0%
+2026-10-04 08:10:13,564 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 1.22 sec
+2026-10-04 08:10:17,634 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 2.14 sec
+MapReduce Total cumulative CPU time: 2 seconds 140 msec
+Ended Job = job_1791096253713_0039
+Moving data to directory hdfs://127.0.0.1:9000/user/hive/warehouse/taxi_analytics.db/q3_congestion
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 4  Reduce: 4   Cumulative CPU: 23.98 sec   HDFS Read: 1018059756 HDFS Write: 2242173 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 2.14 sec   HDFS Read: 2252235 HDFS Write: 6578 SUCCESS
+Total MapReduce CPU Time Spent: 26 seconds 120 msec
+OK
+Time taken: 41.637 seconds
+OK
+14	237	236	5757	9.3	1.01	9.41
+15	237	236	5604	9.11	1.01	9.33
+17	237	236	5401	7.03	1.04	6.88
+16	237	236	5309	7.89	1.03	7.91
+12	236	237	5120	9.82	1.01	10.05
+15	236	237	4890	9.92	1.0	10.17
+18	237	236	4688	6.71	1.06	6.45
+13	237	236	4646	8.21	1.0	8.35
+18	236	237	4607	7.64	1.0	7.77
+11	236	237	4543	10.19	1.03	10.23
+Time taken: 0.063 seconds, Fetched: 10 row(s)
+OK
+Time taken: 0.056 seconds
+Query ID = hdoop_20261004081018_e7d5cf3f-df96-4bee-bf8e-9d31ff974e2c
+Total jobs = 2
+SLF4J: Found binding in [jar:file:/home/hdoop/apache-hive-3.1.3-bin/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/hdoop/hadoop-3.2.1/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+
+2026-10-04 08:10:21	Starting to launch local task to process map join;	maximum memory = 239075328
+2026-10-04 08:10:22	Dump the side-table for tag: 1 with group count: 265 into file: file:/tmp/hdoop/81b200ed-6a01-45c3-974c-549ad730c306/hive_2026-10-04_08-10-18_881_3589661887193001085-1/-local-10006/HashTable-Stage-2/MapJoin-mapfile01--.hashtable
+2026-10-04 08:10:22	Uploaded 1 File to: file:/tmp/hdoop/81b200ed-6a01-45c3-974c-549ad730c306/hive_2026-10-04_08-10-18_881_3589661887193001085-1/-local-10006/HashTable-Stage-2/MapJoin-mapfile01--.hashtable (12239 bytes)
+2026-10-04 08:10:22	End of local task; Time Taken: 0.805 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 4
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+2026-10-04 08:10:23,084 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:10:23,093 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0040, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0040/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0040
+Hadoop job information for Stage-2: number of mappers: 4; number of reducers: 4
+2026-10-04 08:10:27,818 Stage-2 map = 0%,  reduce = 0%
+2026-10-04 08:10:33,936 Stage-2 map = 75%,  reduce = 0%, Cumulative CPU 10.63 sec
+2026-10-04 08:10:38,011 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 13.14 sec
+2026-10-04 08:10:40,038 Stage-2 map = 100%,  reduce = 75%, Cumulative CPU 17.04 sec
+2026-10-04 08:10:42,078 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 18.29 sec
+MapReduce Total cumulative CPU time: 18 seconds 290 msec
+Ended Job = job_1791096253713_0040
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+2026-10-04 08:10:43,576 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:10:43,587 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0041, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0041/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0041
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 1
+2026-10-04 08:10:52,290 Stage-3 map = 0%,  reduce = 0%
+2026-10-04 08:10:55,352 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 0.71 sec
+2026-10-04 08:10:59,421 Stage-3 map = 100%,  reduce = 100%, Cumulative CPU 1.73 sec
+MapReduce Total cumulative CPU time: 1 seconds 730 msec
+Ended Job = job_1791096253713_0041
+Moving data to directory hdfs://127.0.0.1:9000/user/hive/warehouse/taxi_analytics.db/q4_airports
+MapReduce Jobs Launched: 
+Stage-Stage-2: Map: 4  Reduce: 4   Cumulative CPU: 18.29 sec   HDFS Read: 1018082136 HDFS Write: 43387 SUCCESS
+Stage-Stage-3: Map: 1  Reduce: 1   Cumulative CPU: 1.73 sec   HDFS Read: 53815 HDFS Write: 11628 SUCCESS
+Total MapReduce CPU Time Spent: 20 seconds 20 msec
+OK
+Time taken: 41.66 seconds
+OK
+JFK	Outside of NYC	N/A	19613	19.96	101.42	11.7	39.4
+JFK	Times Sq/Theatre District	Manhattan	14778	17.65	70.97	16.28	56.2
+JFK	JFK Airport	Queens	10977	2.48	37.82	8.34	11.1
+JFK	Flushing Meadows-Corona Park	Queens	10689	8.05	31.79	0.35	16.5
+JFK	Midtown South	Manhattan	7969	17.01	70.65	18.22	48.1
+JFK	Clinton East	Manhattan	7254	17.95	70.95	15.64	55.5
+JFK	Midtown Center	Manhattan	6503	17.38	70.84	18.3	51.7
+JFK	Midtown North	Manhattan	6477	17.81	70.93	17.96	56.1
+JFK	Baisley Park	Queens	6300	3.77	18.54	11.91	11.8
+JFK	Murray Hill	Manhattan	6236	16.64	70.26	17.79	42.5
+Time taken: 0.074 seconds, Fetched: 10 row(s)
+OK
+Time taken: 0.027 seconds
+Query ID = hdoop_20261004081100_8ebb228b-ff8c-451f-b578-eed152455075
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 4
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+2026-10-04 08:11:01,238 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:11:01,247 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0042, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0042/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0042
+Hadoop job information for Stage-1: number of mappers: 4; number of reducers: 4
+2026-10-04 08:11:09,362 Stage-1 map = 0%,  reduce = 0%
+2026-10-04 08:11:14,454 Stage-1 map = 75%,  reduce = 0%, Cumulative CPU 4.62 sec
+2026-10-04 08:11:18,537 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 8.77 sec
+2026-10-04 08:11:19,551 Stage-1 map = 100%,  reduce = 50%, Cumulative CPU 11.35 sec
+2026-10-04 08:11:20,563 Stage-1 map = 100%,  reduce = 75%, Cumulative CPU 12.59 sec
+2026-10-04 08:11:21,573 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 13.8 sec
+MapReduce Total cumulative CPU time: 13 seconds 800 msec
+Ended Job = job_1791096253713_0042
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+2026-10-04 08:11:24,495 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2026-10-04 08:11:24,507 INFO  [81b200ed-6a01-45c3-974c-549ad730c306 main] client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+Starting Job = job_1791096253713_0043, Tracking URL = http://dhruv:8088/proxy/application_1791096253713_0043/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1791096253713_0043
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2026-10-04 08:11:31,202 Stage-2 map = 0%,  reduce = 0%
+2026-10-04 08:11:35,269 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 0.65 sec
+2026-10-04 08:11:39,331 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 1.54 sec
+MapReduce Total cumulative CPU time: 1 seconds 540 msec
+Ended Job = job_1791096253713_0043
+Moving data to directory hdfs://127.0.0.1:9000/user/hive/warehouse/taxi_analytics.db/q5_payment_share
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 4  Reduce: 4   Cumulative CPU: 13.8 sec   HDFS Read: 1018045504 HDFS Write: 700 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 1.54 sec   HDFS Read: 10135 HDFS Write: 961 SUCCESS
+Total MapReduce CPU Time Spent: 15 seconds 340 msec
+OK
+Time taken: 39.781 seconds
+OK
+Manhattan	88.05	10.95	1.00	6810559
+Queens	79.89	17.87	2.24	765850
+Brooklyn	95.81	3.74	0.45	153023
+Bronx	96.83	2.89	0.28	56608
+Unknown	85.51	13.02	1.47	11020
+N/A	79.03	16.07	4.89	1941
+EWR	95.24	4.46	0.30	336
+Staten Island	35.36	62.74	1.90	263
+Time taken: 0.053 seconds, Fetched: 8 row(s)
+OK
+STAGE DEPENDENCIES:
+  Stage-1 is a root stage
+  Stage-2 depends on stages: Stage-1
+  Stage-0 depends on stages: Stage-2
+
+STAGE PLANS:
+  Stage: Stage-1
+    Map Reduce
+      Map Operator Tree:
+          TableScan
+            alias: fact_trips
+            Statistics: Num rows: 17795970 Data size: 10179295232 Basic stats: COMPLETE Column stats: NONE
+            Select Operator
+              expressions: pickup_hour (type: int), pu_zone (type: string)
+              outputColumnNames: pickup_hour, pu_zone
+              Statistics: Num rows: 17795970 Data size: 10179295232 Basic stats: COMPLETE Column stats: NONE
+              Group By Operator
+                aggregations: count()
+                keys: pickup_hour (type: int), pu_zone (type: string)
+                mode: hash
+                outputColumnNames: _col0, _col1, _col2
+                Statistics: Num rows: 17795970 Data size: 10179295232 Basic stats: COMPLETE Column stats: NONE
+                Reduce Output Operator
+                  key expressions: _col0 (type: int), _col1 (type: string)
+                  sort order: ++
+                  Map-reduce partition columns: _col0 (type: int), _col1 (type: string)
+                  Statistics: Num rows: 17795970 Data size: 10179295232 Basic stats: COMPLETE Column stats: NONE
+                  value expressions: _col2 (type: bigint)
+      Execution mode: vectorized
+      Reduce Operator Tree:
+        Group By Operator
+          aggregations: count(VALUE._col0)
+          keys: KEY._col0 (type: int), KEY._col1 (type: string)
+          mode: mergepartial
+          outputColumnNames: _col0, _col1, _col2
+          Statistics: Num rows: 8897985 Data size: 5089647616 Basic stats: COMPLETE Column stats: NONE
+          File Output Operator
+            compressed: false
+            table:
+                input format: org.apache.hadoop.mapred.SequenceFileInputFormat
+                output format: org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat
+                serde: org.apache.hadoop.hive.serde2.lazybinary.LazyBinarySerDe
+
+  Stage: Stage-2
+    Map Reduce
+      Map Operator Tree:
+          TableScan
+            Reduce Output Operator
+              key expressions: _col2 (type: bigint)
+              sort order: -
+              Statistics: Num rows: 8897985 Data size: 5089647616 Basic stats: COMPLETE Column stats: NONE
+              TopN Hash Memory Usage: 0.1
+              value expressions: _col0 (type: int), _col1 (type: string)
+      Execution mode: vectorized
+      Reduce Operator Tree:
+        Select Operator
+          expressions: VALUE._col0 (type: int), VALUE._col1 (type: string), KEY.reducesinkkey0 (type: bigint)
+          outputColumnNames: _col0, _col1, _col2
+          Statistics: Num rows: 8897985 Data size: 5089647616 Basic stats: COMPLETE Column stats: NONE
+          Limit
+            Number of rows: 10
+            Statistics: Num rows: 10 Data size: 5720 Basic stats: COMPLETE Column stats: NONE
+            File Output Operator
+              compressed: false
+              Statistics: Num rows: 10 Data size: 5720 Basic stats: COMPLETE Column stats: NONE
+              table:
+                  input format: org.apache.hadoop.mapred.SequenceFileInputFormat
+                  output format: org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat
+                  serde: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+
+  Stage: Stage-0
+    Fetch Operator
+      limit: 10
+      Processor Tree:
+        ListSink
+
+Time taken: 0.115 seconds, Fetched: 76 row(s)
