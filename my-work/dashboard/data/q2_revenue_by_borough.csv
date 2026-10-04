@@ -1,0 +1,31 @@
+Manhattan,Card,5996818,1.4647820673E8,15.33,26.18
+Queens,Card,611861,4.765344973E7,55.7,20.21
+Manhattan,Cash,745754,1.495282101E7,14.71,0.0
+Queens,Cash,136864,7205355.95,45.04,0.0
+Brooklyn,Card,146612,4994073.75,31.85,3.43
+Bronx,Card,54812,2220193.37,37.99,0.55
+Manhattan,Dispute,48410,1000005.05,15.09,0.0
+Queens,Dispute,13433,790325.82,50.3,0.01
+Manhattan,NoCharge,19577,378288.07,13.87,0.01
+Unknown,Card,9423,304434.3,21.4,25.27
+Queens,NoCharge,3692,192503.63,44.16,0.0
+N/A,Card,1534,147212.94,81.16,17.58
+Brooklyn,Cash,5720,146456.81,21.82,0.01
+Bronx,Cash,1636,41063.71,22.11,0.0
+Unknown,Cash,1435,38770.05,21.52,0.01
+EWR,Card,320,35147.45,93.69,11.2
+N/A,Cash,312,18685.64,55.26,0.0
+Brooklyn,Dispute,460,13981.79,26.7,0.09
+Brooklyn,NoCharge,231,5821.81,22.23,0.0
+Staten Island,Card,93,5746.63,54.24,32.69
+N/A,Dispute,53,4131.62,72.82,0.0
+Staten Island,Cash,165,3148.59,6.49,0.0
+N/A,NoCharge,42,2660.47,57.86,0.0
+Unknown,NoCharge,96,2288.68,18.28,0.0
+Unknown,Dispute,66,2118.24,26.38,0.48
+Bronx,Dispute,99,2053.12,18.12,0.0
+EWR,Cash,15,1250.34,80.92,0.0
+Bronx,NoCharge,61,996.01,13.86,0.6
+EWR,NoCharge,1,145.0,144.0,0.0
+Staten Island,Dispute,3,112.2,34.73,0.0
+Staten Island,NoCharge,2,95.85,44.3,0.0
