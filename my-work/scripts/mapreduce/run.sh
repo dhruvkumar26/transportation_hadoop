@@ -49,7 +49,7 @@ hadoop jar "$STREAMING_JAR" \
 
 echo ""
 echo "→ First 10 lines of output:"
-echo $(hdfs dfs -cat "$OUTPUT/part-*" | head -10)
+echo $(hdfs dfs -cat "$OUTPUT/part-*" 2>/dev/null | head -10)
 echo ""
 echo "→ Line count in output:"
 echo $(hdfs dfs -cat "$OUTPUT/part-*" | wc -l)
